@@ -1,6 +1,10 @@
 package Teste;
 
+import Agenda_Contatos.Contato;
+
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -8,28 +12,31 @@ public class Main {
     static Scanner reader = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.print("Digite um valor: ");
-        double valor = Double.parseDouble(reader.nextLine());
+        List<Pessoa> pessoas = new ArrayList<>(List.of(
+                new Pessoa("Geferson da Silva", "(41) 99123-4501", "geferson.silva@example.com"),
+                new Pessoa("Maria Eduarda Souza", "(11) 99654-7821", "maria.eduarda.souza@example.com"),
+                new Pessoa("João Pedro Almeida", "(21) 99801-2245", "joao.pedro.almeida@example.com"),
+                new Pessoa("Ana Carolina Ribeiro", "(31) 98540-1123", "ana.carolina.ribeiro@example.com"),
+                new Pessoa("Lucas Martins", "(51) 99770-3344", "lucas.martins@example.com"),
+                new Pessoa("Beatriz Ferreira", "(19) 99412-7788", "beatriz.ferreira@example.com"),
+                new Pessoa("Rafael Lima", "(85) 98876-9021", "rafael.lima@example.com"),
+                new Pessoa("Camila Rocha", "(71) 98745-1256", "camila.rocha@example.com"),
+                new Pessoa("Pedro Henrique Castro", "(41) 99222-4477", "pedro.henrique.castro@example.com"),
+                new Pessoa("Larissa Oliveira", "(62) 99660-3311", "larissa.oliveira@example.com")
+        ));
 
-        int valorInteiro = (int) valor;
+        for(Pessoa p : pessoas) {
+            System.out.println(p.getPessoaFormatado());
+        }
 
-        double decimal = valor - valorInteiro;
+        System.out.print("\nDigigite um id: ");
+        String idBusca = reader.nextLine();
 
-        //DecimalFormat formatter = new DecimalFormat("0.00");
+        Pessoa pessoa = pessoas.stream()
+                .filter(p -> p.getId().contains(idBusca))
+                .findFirst()
+                .orElse(null);
 
-        //System.out.println("Valor decimal formatado com o formatter => " + formatter.format(decimal));
-
-        //double decimalFormatted = Double.parseDouble(formatter.format(decimal));
-
-        int value = (int)(decimal * 60);
-
-        System.out.println("Decimal formatado abaixo");
-        //System.out.println((int)(decimalFormatted*100));
-        System.out.println("Valor aqui => " + value);
-        System.out.println("Pace => " + valorInteiro + ":" + value);
-
-        //System.out.printf("Valor decimal %.2f%n", decimal);
-
-        //System.out.println(formatter.format(decimal));
+        System.out.println("\n\nResultado aqui -> " + (pessoa == null ? "Pessoa nao encontrada" : pessoa.getPessoaFormatado()));
     }
 }

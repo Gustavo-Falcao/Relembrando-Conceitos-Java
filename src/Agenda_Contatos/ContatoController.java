@@ -2,6 +2,7 @@ package Agenda_Contatos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class ContatoController {
@@ -49,28 +50,77 @@ public class ContatoController {
         System.out.println("\n\n<<Atualizar Contato>>");
 
         String idConsulta = InputHelper.readString("Informe o id do contato: ");
-        Contato contato = buscarContatoPorId(idConsulta);
+        Contato contato = buscarContatoPorId(idConsulta).orElse(null);
 
         while (contato == null) {
             System.out.println("\n\nContato nao encontrado!!");
             idConsulta = InputHelper.readString("Informe o id do contato novamente: ");
-            contato = buscarContatoPorId(idConsulta);
+            contato = buscarContatoPorId(idConsulta).orElse(null);
         }
 
-        System.out.println("\nContato encontrado!!");
-        System.out.println("\n" + contato.getContatoFormatado());
+        System.out.println("Contato encontrado!!");
+        int opcaoAtualizacao;
+
+        do {
+            System.out.println("\n\n" + contato.getContatoFormatado());
+            System.out.println("\n+ ------------------------------ +");
+            System.out.println("|          [1] - Nome            |");
+            System.out.println("|          [2] - Telefone        |");
+            System.out.println("|          [3] - Email           |");
+            System.out.println("|          [0] - Sair            |");
+            System.out.println("+ ------------------------------ +");
+            opcaoAtualizacao = InputHelper.readInteger("Escolha uma opcao para atualizar: ");
+
+            handlerOpacaoAtualizar(opcaoAtualizacao, contato);
+
+        } while (opcaoAtualizacao != 0);
 
 
     }
 
-    private Contato buscarContatoPorId(String idContato) {
-        for(Contato c : contatos) {
-            if(c.getId().contains(idContato)) {
-                return  c;
-            }
+    private void handlerOpacaoAtualizar (int opcao, Contato contato) {
+        switch (opcao) {
+            case 1:
+                System.out.println("\n\nAlterar nome");
+                String nome = InputHelper.readString("Informe o novo nome para o contato: ");
+                contato.setNome(nome);
+                break;
+            case 2:
+                System.out.println("\n\nAlterar telefone");
+                String telefone = InputHelper.readString("Informe o novo telefone: ");
+                contato.setTelefone(telefone);
+                break;
+            case 3:
+                System.out.println("\n\nAlterar email");
+                String email = InputHelper.readString("Informe o novo email: ");
+                contato.setEmail(email);
+                break;
+            case 0:
+                System.out.println("Saindo...");
+                break;
+            default:
+                System.out.println("Escolha uma opcao valida!!");
+                break;
         }
+    }
 
-        return  null;
+    public void deletarContato() {
+        System.out.println("\n\n<<Deletar contato>>");
+        String idContato = InputHelper.readString("Informe o id do contato: ");
+
+        buscarContatoPorId(idContato).ifPresent(this::apagarContato);
+
+    }
+
+    private void apagarContato(Contato contato) {
+        contatos.remove(contato);
+    }
+
+
+    private Optional<Contato> buscarContatoPorId(String idContato) {
+        return contatos.stream()
+                .filter(c -> c.getId().contains(idContato))
+                .findFirst();
     }
 
 }
