@@ -33,5 +33,15 @@ public class InputHelper {
         return reader.nextLine();
     }
 
+    public static float readFloat(String frase) {
+        while(true) {
+            try {
+                System.out.print(frase);
+                return Float.parseFloat(reader.nextLine());
+            }catch (Exception e) {
+                System.out.println("Digite apenas numeros!\n");
+            }
+        }
+    }
 
 }

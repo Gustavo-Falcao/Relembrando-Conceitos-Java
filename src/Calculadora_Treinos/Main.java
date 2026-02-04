@@ -14,12 +14,11 @@ public class Main {
     }
 
     public static void showMenu() {
-        System.out.println("+ ----------------------- +");
+        System.out.println("\n\n+ ----------------------- +");
         System.out.println("|   [1] Pace da corrida   |");
         System.out.println("|   [2] Tempo estimado    |");
         System.out.println("|   [3] Conversor de pace |");
         System.out.println("|   [4] Pace natacao      |");
-        System.out.println("|   [5] Split por km      |");
         System.out.println("|   [0] Sair              |");
         System.out.println("+ ----------------------- +");
     }
@@ -28,6 +27,9 @@ public class Main {
         switch (option) {
             case 0 -> System.out.println("Encerrando...");
             case 1 -> CalculadoraTreino.CalcularPaceCorrida();
+            case 2 -> CalculadoraTreino.CalcularTempoEstimado();
+            case 3 -> CalculadoraTreino.ConverterPace();
+            case 4 -> CalculadoraTreino.PaceNatacao();
             default -> System.out.println("Escolha uma opcao existente!");
         }
     }

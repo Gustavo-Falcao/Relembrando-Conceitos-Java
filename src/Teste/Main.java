@@ -15,15 +15,18 @@ public class Main {
 
         double decimal = valor - valorInteiro;
 
-        DecimalFormat formatter = new DecimalFormat("0.00");
+        //DecimalFormat formatter = new DecimalFormat("0.00");
 
-        double decimalFormatted = Double.parseDouble(formatter.format(decimal));
+        //System.out.println("Valor decimal formatado com o formatter => " + formatter.format(decimal));
 
-        int value = (int)(decimalFormatted * 100);
+        //double decimalFormatted = Double.parseDouble(formatter.format(decimal));
+
+        int value = (int)(decimal * 60);
 
         System.out.println("Decimal formatado abaixo");
-        System.out.println((int)(decimalFormatted*100));
-        System.out.print("Valor aqui => " + value);
+        //System.out.println((int)(decimalFormatted*100));
+        System.out.println("Valor aqui => " + value);
+        System.out.println("Pace => " + valorInteiro + ":" + value);
 
         //System.out.printf("Valor decimal %.2f%n", decimal);
 
