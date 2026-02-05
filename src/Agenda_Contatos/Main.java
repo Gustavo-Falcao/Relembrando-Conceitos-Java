@@ -11,7 +11,6 @@ public class Main {
         int opcao;
 
         do {
-            contatoController.mostrarContatos();
             mostrarMenu();
             opcao = InputHelper.readInteger("Escolha uma opcao: ");
             handlerOpcao(opcao, contatoController);
@@ -35,7 +34,9 @@ public class Main {
             case 1 -> contatoController.criarContato();
             case 2 -> contatoController.atualizarContato();
             case 3 -> contatoController.deletarContato();
+            case 4 -> contatoController.buscarContato();
             case 5 -> contatoController.mostrarContatos();
+            case 0 -> System.out.println("Saindo...");
             default -> System.out.println("Escolha uma opcao existente");
         }
     }

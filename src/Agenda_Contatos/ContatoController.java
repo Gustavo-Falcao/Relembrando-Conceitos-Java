@@ -20,7 +20,17 @@ public class ContatoController {
                 new Contato("Rafael Lima", "(85) 98876-9021", "rafael.lima@example.com"),
                 new Contato("Camila Rocha", "(71) 98745-1256", "camila.rocha@example.com"),
                 new Contato("Pedro Henrique Castro", "(41) 99222-4477", "pedro.henrique.castro@example.com"),
-                new Contato("Larissa Oliveira", "(62) 99660-3311", "larissa.oliveira@example.com")
+                new Contato("Larissa Oliveira", "(62) 99660-3311", "larissa.oliveira@example.com"),
+                new Contato("Felipe Araújo", "(11) 98111-2233", "larissa.oliveira@example.com"),
+                new Contato("Carolina Mendes", "(27) 99921-8899", "carolina.mendes@example.com"),
+                new Contato("Thiago Santos", "(81) 98770-6644", "thiago.santos@example.com"),
+                new Contato("Aline Barros", "(48) 99612-5566", "aline.barros@example.com"),
+                new Contato("Bruno Xavier", "(21) 98234-7788", "bruno.xavier@example.com"),
+                new Contato("Patrícia Nogueira", "(31) 98444-9090", "patricia.nogueira@example.com"),
+                new Contato("Diego Fernandes", "(67) 99110-3344", "diego.fernandes@example.com"),
+                new Contato("Juliana Pires", "(16) 99740-2211", "juliana.pires@example.com"),
+                new Contato("Mateus Correia", "(98) 98765-4433", "mateus.correia@example.com"),
+                new Contato("Isabela Martins", "(41) 99555-8811", "isabela.martins@example.com")
         ));
     }
 
@@ -29,9 +39,7 @@ public class ContatoController {
     }
 
     public void mostrarContatos () {
-        for(Contato contato : contatos) {
-            System.out.println(contato.getContatoFormatado());
-        }
+        TabelaFormatada.tabelaFormatada(getContatos());
     }
 
     public void criarContato() {
@@ -108,8 +116,31 @@ public class ContatoController {
         System.out.println("\n\n<<Deletar contato>>");
         String idContato = InputHelper.readString("Informe o id do contato: ");
 
-        buscarContatoPorId(idContato).ifPresent(this::apagarContato);
+        //buscarContatoPorId(idContato).ifPresent(this::apagarContato);
 
+        Contato contato = buscarContatoPorId(idContato).orElse(null);
+
+        if(contato != null) {
+            apagarContato(contato);
+            System.out.println("\nContato excluido com sucesso");
+        } else {
+            System.out.println("\nContato não encontrado!!");
+        }
+
+    }
+
+    public void buscarContato() {
+        System.out.println("\n\n<<Buscar contato>>");
+        String idContato = InputHelper.readString("Informe o id do contato: ");
+
+        Contato contato = buscarContatoPorId(idContato).orElse(null);
+
+        if(contato != null) {
+            System.out.println("\nContato encontrado!!");
+            System.out.println("\n\n" + contato.getContatoFormatado());
+        } else {
+            System.out.println("\n Contato não encontrado ❌");
+        }
     }
 
     private void apagarContato(Contato contato) {
@@ -125,76 +156,7 @@ public class ContatoController {
 
 }
 
-//        {
-//        "id": 11,
-//        "nome": "Felipe Araújo",
-//        "email": "felipe.araujo@example.com",
-//        "telefone": "(11) 98111-2233",
-//        "endereco": "Rua dos Pinheiros, 400 - Pinheiros, São Paulo - SP"
-//        },
-//        {
-//        "id": 12,
-//        "nome": "Carolina Mendes",
-//        "email": "carolina.mendes@example.com",
-//        "telefone": "(27) 99921-8899",
-//        "endereco": "Av. Nossa Senhora da Penha, 1550 - Praia do Canto, Vitória - ES"
-//        },
-//        {
-//        "id": 13,
-//        "nome": "Thiago Santos",
-//        "email": "thiago.santos@example.com",
-//        "telefone": "(81) 98770-6644",
-//        "endereco": "Av. Boa Viagem, 3200 - Boa Viagem, Recife - PE"
-//        },
-//        {
-//        "id": 14,
-//        "nome": "Aline Barros",
-//        "email": "aline.barros@example.com",
-//        "telefone": "(48) 99612-5566",
-//        "endereco": "Rua Bocaiúva, 300 - Centro, Florianópolis - SC"
-//        },
-//        {
-//        "id": 15,
-//        "nome": "Bruno Xavier",
-//        "email": "bruno.xavier@example.com",
-//        "telefone": "(21) 98234-7788",
-//        "endereco": "Rua Voluntários da Pátria, 700 - Botafogo, Rio de Janeiro - RJ"
-//        },
-//        {
-//        "id": 16,
-//        "nome": "Patrícia Nogueira",
-//        "email": "patricia.nogueira@example.com",
-//        "telefone": "(31) 98444-9090",
-//        "endereco": "Av. Contorno, 6300 - Funcionários, Belo Horizonte - MG"
-//        },
-//        {
-//        "id": 17,
-//        "nome": "Diego Fernandes",
-//        "email": "diego.fernandes@example.com",
-//        "telefone": "(67) 99110-3344",
-//        "endereco": "Av. Afonso Pena, 1200 - Centro, Campo Grande - MS"
-//        },
-//        {
-//        "id": 18,
-//        "nome": "Juliana Pires",
-//        "email": "juliana.pires@example.com",
-//        "telefone": "(16) 99740-2211",
-//        "endereco": "Av. Independência, 900 - Jardim Sumaré, Ribeirão Preto - SP"
-//        },
-//        {
-//        "id": 19,
-//        "nome": "Mateus Correia",
-//        "email": "mateus.correia@example.com",
-//        "telefone": "(98) 98765-4433",
-//        "endereco": "Av. Litorânea, 600 - Calhau, São Luís - MA"
-//        },
-//        {
-//        "id": 20,
-//        "nome": "Isabela Martins",
-//        "email": "isabela.martins@example.com",
-//        "telefone": "(41) 99555-8811",
-//        "endereco": "Rua Itupava, 950 - Alto da XV, Curitiba - PR"
-//        },
+
 //        {
 //        "id": 21,
 //        "nome": "Rodrigo Teixeira",
