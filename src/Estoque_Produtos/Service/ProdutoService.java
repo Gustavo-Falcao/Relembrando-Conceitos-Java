@@ -4,10 +4,11 @@ import Estoque_Produtos.Produto;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ProdutoService {
 
-    Map<String,Produto> produtos;
+    private Map<String,Produto> produtos;
 
     public ProdutoService() {
         produtos = new HashMap<>(Map.ofEntries(
@@ -34,4 +35,38 @@ public class ProdutoService {
         produtos.put(produto.getSku(), produto);
     }
 
+    public Optional<Produto> findProdutoByKey(String key) {
+        return Optional.ofNullable(produtos.get(key));
+    }
+
+    public void deleteProduto(String key) {
+        if(findProdutoByKey(key).isPresent()) {
+            produtos.remove(key);
+            Log.logSucesso("Produto excluido com sucesso!!");
+        } else {
+            Log.logErro("Produto não encontrado!!");
+        }
+    }
+
+    public void addEstoque(String key, int quantidadeAddEstoque) {
+        Produto produto = findProdutoByKey(key).orElse(null);
+
+        if(produto != null) {
+            produto.setQuantidade(produto.getQuantidade() + quantidadeAddEstoque);
+            Log.logSucesso("Produto atualizado com sucesso!!");
+        } else {
+            Log.logErro("Produto não encontrado!!");
+        }
+    }
+
+    public void saidaEstoque(String key, int quantidadeSaidaEstoque) {
+        Produto produto = findProdutoByKey(key).orElse(null);
+
+        if(produto != null) {
+            produto.setQuantidade(produto.getQuantidade() - quantidadeSaidaEstoque);
+            Log.logSucesso("Produto atualizado com sucesso!!");
+        } else {
+            Log.logErro("Produto não encontrado!!");
+        }
+    }
 }

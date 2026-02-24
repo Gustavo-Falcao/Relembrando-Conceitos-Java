@@ -5,6 +5,8 @@ import Estoque_Produtos.Produto;
 import Estoque_Produtos.Service.InputHelper;
 import Estoque_Produtos.Service.Log;
 
+import java.security.PublicKey;
+
 public class ProdutoView {
 
     public static ProdutoController produtoController = new ProdutoController();
@@ -22,11 +24,37 @@ public class ProdutoView {
     }
 
     public static void mostrarProdutos() {
-        var produtos = produtoController.getProdutos();
-
         System.out.println("\n\n");
-        for(Produto produto : produtos.values()) {
+        TabelaProdutos.tabelaProdutos(produtoController.getProdutos());
+    }
+
+    public static void addEstoque() {
+        System.out.println("\n\n");
+        System.out.println("<< Adicionar Estoque >>");
+        String key = InputHelper.readString("Informe o código do produto: ");
+        int quantidadeEntrada = InputHelper.readInt("Informe a quantidade de produtos: ");
+        produtoController.addEstoque(key, quantidadeEntrada);
+    }
+
+    public static void saidaEstoque() {
+        System.out.println("\n\n");
+        System.out.println("<< Saida de Estoque >>");
+        String key = InputHelper.readString("Informe o código do produto: ");
+        int quantidadeSaida = InputHelper.readInt("Informe a quantidade de produtos: ");
+        produtoController.saidaEstoque(key, quantidadeSaida);
+    }
+
+    public static void consultarProduto() {
+        System.out.println("\n\n");
+        System.out.println("<< Consultar Produto >>");
+        String key = InputHelper.readString("Informe o código do produto: ");
+
+        Produto produto = produtoController.consultarProduto(key);
+        if(produto != null) {
             System.out.println(produto.getProdutoFormatado());
+        } else {
+            Log.logErro("Produto não encontrado!!");
         }
+
     }
 }

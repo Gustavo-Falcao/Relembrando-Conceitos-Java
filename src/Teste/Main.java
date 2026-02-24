@@ -38,5 +38,9 @@ public class Main {
                 .orElse(null);
 
         System.out.println("\n\nResultado aqui -> " + (pessoa == null ? "Pessoa nao encontrada" : pessoa.getPessoaFormatado()));
+        System.out.println("Quantidade carecter id digitado sem trim => " + idBusca.length());
+        System.out.println("Quantidade carecter id digitado com trim => " + idBusca.trim().length());
+        System.out.println("Resultado da condição de quant caractere =>" + (idBusca.trim().length() < 2 || idBusca.trim().length() > 60 ? "Valor inválido" : "Valor valido"));
+
     }
 }

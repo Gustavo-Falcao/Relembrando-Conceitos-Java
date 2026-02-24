@@ -19,6 +19,9 @@ public class AppView {
     public static void handlerMenuPrincipal(int opcao) {
         switch (opcao) {
             case 1 -> ProdutoView.cadastrarProduto();
+            case 2 -> ProdutoView.addEstoque();
+            case 3 -> ProdutoView.saidaEstoque();
+            case 4 -> ProdutoView.consultarProduto();
             case 5 -> ProdutoView.mostrarProdutos();
             case 0 -> System.out.println("Saindo...");
             default -> Log.logAtencao("Escolha uma opcao valida!!");
