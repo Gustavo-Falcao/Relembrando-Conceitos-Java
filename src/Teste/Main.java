@@ -40,6 +40,13 @@ public class Main {
         System.out.println("\n\nResultado aqui -> " + (pessoa == null ? "Pessoa nao encontrada" : pessoa.getPessoaFormatado()));
         System.out.println("Quantidade carecter id digitado sem trim => " + idBusca.length());
         System.out.println("Quantidade carecter id digitado com trim => " + idBusca.trim().length());
-        System.out.println("Condição 202.77 é maior que 0 ? -> " + (202.77 > 0));
+
+        String cpfComMascara = "123.456.789-01";
+        String regex = "[-.\s]+";
+
+        System.out.println("Frase com numero -> " + cpfComMascara);
+
+        String cpfSemMascara = cpfComMascara.replaceAll(regex, "");
+        System.out.println("Frase sem numero -> " + cpfSemMascara);
     }
 }
