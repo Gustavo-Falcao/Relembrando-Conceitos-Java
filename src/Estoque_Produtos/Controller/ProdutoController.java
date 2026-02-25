@@ -1,12 +1,12 @@
 package Estoque_Produtos.Controller;
 
 import Estoque_Produtos.Produto;
-import Estoque_Produtos.Service.Entry_Validator;
-import Estoque_Produtos.Service.Log;
+import Estoque_Produtos.Helpers.Entry_Validator;
+import Estoque_Produtos.Helpers.Log;
 import Estoque_Produtos.Service.ProdutoService;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ProdutoController {
 
@@ -26,20 +26,24 @@ public class ProdutoController {
         //Verificando se o codigo do produto informado ja existe
         if(Entry_Validator.isSkuRepetido(sku, produtos)) {
             Log.logErro("Codigo do produto informado já está cadastrado!!");
+            Log.logHistorico("Tentativa de cadastro sem sucesso - [SKU já existente]");
             return false;
         }
 
         if(!Entry_Validator.isNomeValido(nome)) {
             Log.logErro("Valor inválido para o nome do produto!!");
+            Log.logHistorico("Tentativa de cadastro sem sucesso - [nome inválido]");
             return false;
         }
 
         if(!Entry_Validator.isPrecoEntradaValido(preco)) {
             Log.logErro("Valor do preco invalido!!");
+            Log.logHistorico("Tentativa de cadastro sem sucesso - [preço inválido]");
             return false;
         }
         if(!Entry_Validator.isQuantidadeEntradaValido(quantidade)) {
             Log.logErro("Valor inválido para entrada de estoque!!");
+            Log.logHistorico("Tentativa de cadastro sem sucesso [quantidade de estoque inválido]");
             return false;
         }
 
@@ -52,6 +56,7 @@ public class ProdutoController {
             produtoService.addEstoque(key, quantidadeAddEstoque);
        } else {
            Log.logErro("Valor inválido para entrada de estoque!!");
+           Log.logHistorico("Tentativa de entrada de estoque sem sucesso - [entrada inválida]");
        }
     }
 
@@ -60,11 +65,34 @@ public class ProdutoController {
             produtoService.saidaEstoque(key, quantidadeSaidaEstoque);
         } else {
             Log.logErro("Valor inválido para a saida de estoque!!");
+            Log.logHistorico("Tentativa de saida de estoque sem sucesso - [saida inválida]");
         }
     }
 
-    public Produto consultarProduto(String key) {
-        return produtoService.findProdutoByKey(key).orElse(null);
+    public Optional<Produto> consultarProduto(String key) {
+        return produtoService.findProdutoByKey(key);
+    }
+
+    public void deletarProduto(String key) {
+        produtoService.deleteProduto(key);
+    }
+
+    public double consultarValorTotalEstoque() {
+        double precoTotalEstoque = 0.0;
+
+        for(Produto produto : produtoService.getProdutos().values()) {
+            precoTotalEstoque += produto.getPreco();
+        }
+
+        return precoTotalEstoque;
+    }
+
+    public double consultarValorMedioEstoque() {
+        return consultarValorTotalEstoque() / produtoService.getProdutos().size();
+    }
+
+    public int consultarQuantidadeTotalEstoque() {
+        return produtoService.getProdutos().size();
     }
 
 }

@@ -1,5 +1,6 @@
 package Estoque_Produtos.Service;
 
+import Estoque_Produtos.Helpers.Log;
 import Estoque_Produtos.Produto;
 
 import java.util.HashMap;
@@ -33,6 +34,7 @@ public class ProdutoService {
 
     public void cadastrarProduto(Produto produto) {
         produtos.put(produto.getSku(), produto);
+        Log.logHistorico("CADASTRO PRODUTO - SKU " + produto.getSku());
     }
 
     public Optional<Produto> findProdutoByKey(String key) {
@@ -40,33 +42,41 @@ public class ProdutoService {
     }
 
     public void deleteProduto(String key) {
-        if(findProdutoByKey(key).isPresent()) {
-            produtos.remove(key);
-            Log.logSucesso("Produto excluido com sucesso!!");
-        } else {
-            Log.logErro("Produto não encontrado!!");
-        }
+        findProdutoByKey(key).ifPresentOrElse( produto -> {
+                produtos.remove(key, produto);
+                Log.logSucesso("Produto excluido com sucesso!!");
+                Log.logHistorico("DELETE PRODUTO - SKU " + key);
+            },
+                () -> {
+                    Log.logErro("Produto não encontrado!!");
+                    Log.logHistorico("Tentativa de exclusão de produto sem sucesso - [SKU inválido]");
+                }
+        );
     }
 
     public void addEstoque(String key, int quantidadeAddEstoque) {
-        Produto produto = findProdutoByKey(key).orElse(null);
-
-        if(produto != null) {
-            produto.setQuantidade(produto.getQuantidade() + quantidadeAddEstoque);
-            Log.logSucesso("Produto atualizado com sucesso!!");
-        } else {
-            Log.logErro("Produto não encontrado!!");
-        }
+        findProdutoByKey(key).ifPresentOrElse(produto -> {
+                produto.setQuantidade(produto.getQuantidade() + quantidadeAddEstoque);
+                Log.logSucesso("Produto atualizado com sucesso!!");
+                Log.logHistorico("ENTRADA " + quantidadeAddEstoque + " - SKU " + produto.getSku());
+            },
+                () -> {
+                    Log.logErro("Produto não encontrado!!");
+                    Log.logHistorico("Tentativa de entrada de estoque sem sucesso - [SKU inválido]");
+                }
+        );
     }
 
     public void saidaEstoque(String key, int quantidadeSaidaEstoque) {
-        Produto produto = findProdutoByKey(key).orElse(null);
-
-        if(produto != null) {
+        findProdutoByKey(key).ifPresentOrElse(produto -> {
             produto.setQuantidade(produto.getQuantidade() - quantidadeSaidaEstoque);
             Log.logSucesso("Produto atualizado com sucesso!!");
-        } else {
-            Log.logErro("Produto não encontrado!!");
-        }
+            Log.logHistorico("SAIDA " + quantidadeSaidaEstoque + " - SKU " + produto.getSku());
+            },
+                () -> {
+                    Log.logErro("Produto não encontrado!!");
+                    Log.logHistorico("Tentativa de saida de estoque sem sucesso - [SKU inválido]");
+                }
+        );
     }
 }

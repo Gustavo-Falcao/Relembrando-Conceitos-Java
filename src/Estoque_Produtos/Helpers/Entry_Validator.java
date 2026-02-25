@@ -1,4 +1,4 @@
-package Estoque_Produtos.Service;
+package Estoque_Produtos.Helpers;
 
 import Estoque_Produtos.Produto;
 

@@ -1,6 +1,6 @@
 package Estoque_Produtos;
 
-import Estoque_Produtos.Service.InputHelper;
+import Estoque_Produtos.Helpers.InputHelper;
 import Estoque_Produtos.View.AppView;
 
 public class Main {

@@ -40,7 +40,6 @@ public class Main {
         System.out.println("\n\nResultado aqui -> " + (pessoa == null ? "Pessoa nao encontrada" : pessoa.getPessoaFormatado()));
         System.out.println("Quantidade carecter id digitado sem trim => " + idBusca.length());
         System.out.println("Quantidade carecter id digitado com trim => " + idBusca.trim().length());
-        System.out.println("Resultado da condição de quant caractere =>" + (idBusca.trim().length() < 2 || idBusca.trim().length() > 60 ? "Valor inválido" : "Valor valido"));
-
+        System.out.println("Condição 202.77 é maior que 0 ? -> " + (202.77 > 0));
     }
 }
