@@ -1,5 +1,7 @@
 package Estoque_Produtos.Helpers;
 
+import Estoque_Produtos.Exceptions.ValidationException;
+
 import java.util.Scanner;
 
 public class InputHelper {
@@ -17,7 +19,7 @@ public class InputHelper {
                 System.out.print(frase);
                 return Integer.parseInt(scanner.nextLine());
             } catch (Exception e) {
-                Log.logAtencao("Digite apenas numeros inteiros!!");
+                LogUser.logAtencao("Digite apenas numeros inteiros!!");
             }
         }
     }
@@ -29,9 +31,21 @@ public class InputHelper {
                 System.out.print(frase);
                 return Double.parseDouble(scanner.nextLine());
             } catch (Exception e) {
-                Log.logAtencao("Digite apenas numeros decimais!!");
+                LogUser.logAtencao("Digite apenas numeros decimais!!");
             }
 
+        }
+    }
+
+    public static String readValidName(String frase) {
+        while (true) {
+            try {
+                String nome = readString(frase);
+                return Entry_Validator.isNomeValido(nome);
+            } catch (ValidationException e) {
+                LogUser.logErro(e.getMessage());
+                SystemLog.error(e.getMessage());
+            }
         }
     }
 }

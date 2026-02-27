@@ -1,6 +1,7 @@
 package Estoque_Produtos.Service;
 
-import Estoque_Produtos.Helpers.Log;
+import Estoque_Produtos.Exceptions.ValidationException;
+import Estoque_Produtos.Helpers.LogUser;
 import Estoque_Produtos.Produto;
 
 import java.util.HashMap;
@@ -33,8 +34,20 @@ public class ProdutoService {
     }
 
     public void cadastrarProduto(Produto produto) {
+
+        if(produtos.containsKey(produto.getSku())) {
+            throw new ValidationException("Cadastro bloqueado: SKU já existe | sku=" + produto.getSku());
+        }
+
+        if(produto.getPreco() < 0) {
+            throw new ValidationException("Validação falhou: preco inválido | preco=" + produto.getPreco());
+        }
+
+        if(produto.getQuantidade() < 0) {
+            throw new ValidationException("Entrada inicial rejeitada: quantidade inváldida | sku=" + produto.getSku() + "add=" + produto.getQuantidade());
+        }
+
         produtos.put(produto.getSku(), produto);
-        Log.logHistorico("CADASTRO PRODUTO - SKU " + produto.getSku());
     }
 
     public Optional<Produto> findProdutoByKey(String key) {
@@ -44,12 +57,12 @@ public class ProdutoService {
     public void deleteProduto(String key) {
         findProdutoByKey(key).ifPresentOrElse( produto -> {
                 produtos.remove(key, produto);
-                Log.logSucesso("Produto excluido com sucesso!!");
-                Log.logHistorico("DELETE PRODUTO - SKU " + key);
+                LogUser.logSucesso("Produto excluido com sucesso!!");
+                //LogUser.logHistorico("DELETE PRODUTO - SKU " + key);
             },
                 () -> {
-                    Log.logErro("Produto não encontrado!!");
-                    Log.logHistorico("Tentativa de exclusão de produto sem sucesso - [SKU inválido]");
+                    LogUser.logErro("Produto não encontrado!!");
+                    //LogUser.logHistorico("Tentativa de exclusão de produto sem sucesso - [SKU inválido]");
                 }
         );
     }
@@ -57,12 +70,12 @@ public class ProdutoService {
     public void addEstoque(String key, int quantidadeAddEstoque) {
         findProdutoByKey(key).ifPresentOrElse(produto -> {
                 produto.setQuantidade(produto.getQuantidade() + quantidadeAddEstoque);
-                Log.logSucesso("Produto atualizado com sucesso!!");
-                Log.logHistorico("ENTRADA " + quantidadeAddEstoque + " - SKU " + produto.getSku());
+                LogUser.logSucesso("Produto atualizado com sucesso!!");
+                //LogUser.logHistorico("ENTRADA " + quantidadeAddEstoque + " - SKU " + produto.getSku());
             },
                 () -> {
-                    Log.logErro("Produto não encontrado!!");
-                    Log.logHistorico("Tentativa de entrada de estoque sem sucesso - [SKU inválido]");
+                    LogUser.logErro("Produto não encontrado!!");
+                    //LogUser.logHistorico("Tentativa de entrada de estoque sem sucesso - [SKU inválido]");
                 }
         );
     }
@@ -70,12 +83,12 @@ public class ProdutoService {
     public void saidaEstoque(String key, int quantidadeSaidaEstoque) {
         findProdutoByKey(key).ifPresentOrElse(produto -> {
             produto.setQuantidade(produto.getQuantidade() - quantidadeSaidaEstoque);
-            Log.logSucesso("Produto atualizado com sucesso!!");
-            Log.logHistorico("SAIDA " + quantidadeSaidaEstoque + " - SKU " + produto.getSku());
+            LogUser.logSucesso("Produto atualizado com sucesso!!");
+            //LogUser.logHistorico("SAIDA " + quantidadeSaidaEstoque + " - SKU " + produto.getSku());
             },
                 () -> {
-                    Log.logErro("Produto não encontrado!!");
-                    Log.logHistorico("Tentativa de saida de estoque sem sucesso - [SKU inválido]");
+                    LogUser.logErro("Produto não encontrado!!");
+                    //LogUser.logHistorico("Tentativa de saida de estoque sem sucesso - [SKU inválido]");
                 }
         );
     }

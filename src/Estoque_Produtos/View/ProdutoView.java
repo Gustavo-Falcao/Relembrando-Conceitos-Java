@@ -3,7 +3,7 @@ package Estoque_Produtos.View;
 import Estoque_Produtos.Controller.ProdutoController;
 import Estoque_Produtos.Produto;
 import Estoque_Produtos.Helpers.InputHelper;
-import Estoque_Produtos.Helpers.Log;
+import Estoque_Produtos.Helpers.LogUser;
 
 public class ProdutoView {
 
@@ -14,11 +14,11 @@ public class ProdutoView {
         System.out.println("<<Cadastrar produto>>");
 
         String sku = InputHelper.readString("Informe o codigo do produto: ");
-        String nome = InputHelper.readString("Informe o nome do produto: ");
+        String nome = InputHelper.readValidName("Informe o nome do produto: ");
         double preco = InputHelper.readDouble("Informe o preco do produto: ");
         int quantidade = InputHelper.readInt("Informe a quantidade inicial de estoque: ");
 
-        if(produtoController.cadastrarProduto(sku, nome, preco, quantidade)) Log.logSucesso("Produto cadastrado!!");
+        if(produtoController.cadastrarProduto(sku, nome, preco, quantidade)) LogUser.logSucesso("Produto cadastrado!!");
     }
 
     public static void mostrarProdutos() {
@@ -50,8 +50,8 @@ public class ProdutoView {
         produtoController.consultarProduto(key)
                 .ifPresentOrElse(produto -> System.out.println(produto.getProdutoFormatado()),
                         () -> {
-                                Log.logErro("Produto não encontrado");
-                                Log.logHistorico("Tentativa de consulta de produto sem sucesso - [SKU inválido]");
+                                LogUser.logErro("Produto não encontrado");
+                                //LogUser.logHistorico("Tentativa de consulta de produto sem sucesso - [SKU inválido]");
                         }
                 );
     }
@@ -69,8 +69,8 @@ public class ProdutoView {
         double precoTotalEstoque = produtoController.consultarValorTotalEstoque();
 
         if(precoTotalEstoque < 0) {
-            Log.logErro("Nenhum produto cadastrado ainda!!");
-            Log.logHistorico("Tentativa de calculo de estoque sem sucesso - [nenhum produto cadastrado]");
+            LogUser.logErro("Nenhum produto cadastrado ainda!!");
+            //LogUser.logHistorico("Tentativa de calculo de estoque sem sucesso - [nenhum produto cadastrado]");
         } else {
             System.out.printf("-> %.2f", precoTotalEstoque);
         }
@@ -82,9 +82,9 @@ public class ProdutoView {
         double precoMedioEstoque = produtoController.consultarValorMedioEstoque();
 
         if(precoMedioEstoque < 0) {
-            Log.logErro("Nenhum produto cadastrado ainda!!");
+            LogUser.logErro("Nenhum produto cadastrado ainda!!");
             System.out.printf("Valor aqui -> %.2f", precoMedioEstoque);
-            Log.logHistorico("Tentativa de calculo de estoque sem sucesso - [nenhum produto cadastrado]");
+            //LogUser.logHistorico("Tentativa de calculo de estoque sem sucesso - [nenhum produto cadastrado]");
         } else {
             System.out.printf("-> %.2f", precoMedioEstoque);
         }

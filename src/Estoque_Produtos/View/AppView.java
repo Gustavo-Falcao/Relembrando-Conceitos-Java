@@ -1,6 +1,7 @@
 package Estoque_Produtos.View;
 
-import Estoque_Produtos.Helpers.Log;
+import Estoque_Produtos.Helpers.LogUser;
+import Estoque_Produtos.Helpers.SystemLog;
 
 public class AppView {
 
@@ -33,7 +34,7 @@ public class AppView {
             case 9 -> ProdutoView.consultarValorTotalEstoque();
             case 10 -> ProdutoView.consultarValorMedioEstoque();
             case 0 -> System.out.println("Saindo...");
-            default -> Log.logAtencao("Escolha uma opcao valida!!");
+            default -> LogUser.logAtencao("Escolha uma opcao valida!!");
         }
     }
 
@@ -41,10 +42,10 @@ public class AppView {
         System.out.println("\n\n");
         System.out.println("<< Histórico acoes >>");
 
-        if(Log.historicoAcoes.size() < 1) {
-            Log.logAtencao("Nenhuma ação realizada ainda!!");
+        if(SystemLog.logHistorico.size() < 1) {
+            LogUser.logAtencao("Nenhuma ação realizada ainda!!");
         } else {
-            for(String historico : Log.historicoAcoes) {
+            for(String historico : SystemLog.logHistorico) {
                 System.out.println(historico);
             }
         }
