@@ -40,11 +40,21 @@ public class Main {
             case 2:
                 System.out.print("Digite o cpf: ");
                 String cpf = scanner.nextLine();
-                if(Validador.validarCpf(cpf)) System.out.println("Cpf válido!!");
+                String resultCpf = Validador.validarCpf(cpf);
+                if(!resultCpf.isEmpty()) System.out.println("Seu cpf é válido -> " + resultCpf);
                 break;
-            case 3: //email
+            case 3:
+                System.out.print("Digite o email: ");
+                String email = scanner.nextLine();
+                if(Validador.validarEmail(email)) System.out.println("Seu email é válido -> " + email);
                 break;
-            case 4: //telefone
+            case 4:
+                System.out.print("Ditite o telefone com ou sem mascara: ");
+                String telefone = scanner.nextLine();
+                String resultTelefone = Validador.validarTelefone(telefone);
+                if(!resultTelefone.isEmpty()) {
+                    System.out.println("Seu telefone é válido -> " + resultTelefone);
+                }
                 break;
             case 0:
                 System.out.println("Saindo...");

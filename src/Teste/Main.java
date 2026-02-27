@@ -41,12 +41,12 @@ public class Main {
         System.out.println("Quantidade carecter id digitado sem trim => " + idBusca.length());
         System.out.println("Quantidade carecter id digitado com trim => " + idBusca.trim().length());
 
-        String cpfComMascara = "123.456.789-01";
-        String regex = "[-.\s]+";
+        String telefoneComMascara = "(41) 92231-9940";
 
-        System.out.println("Frase com numero -> " + cpfComMascara);
+        //String telefoneSemMascara = telefoneComMascara.replaceAll("[()\\s-]", "");
+        String telefoneSemMascara = telefoneComMascara.replaceAll("\\D+", "");
 
-        String cpfSemMascara = cpfComMascara.replaceAll(regex, "");
-        System.out.println("Frase sem numero -> " + cpfSemMascara);
+        System.out.println("Telefone com mascara => " + telefoneComMascara);
+        System.out.println("Telefone sem mascara => " + telefoneSemMascara);
     }
 }
