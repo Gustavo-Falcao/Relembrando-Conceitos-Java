@@ -1,7 +1,4 @@
-package Estoque_Produtos.Helpers;
-
-import java.util.ArrayList;
-import java.util.List;
+package Estoque_Produtos.Logs;
 
 public class LogUser {
 

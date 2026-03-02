@@ -1,7 +1,7 @@
 package Estoque_Produtos.View;
 
-import Estoque_Produtos.Helpers.LogUser;
-import Estoque_Produtos.Helpers.SystemLog;
+import Estoque_Produtos.Logs.LogUser;
+import Estoque_Produtos.Logs.SystemLog;
 
 public class AppView {
 

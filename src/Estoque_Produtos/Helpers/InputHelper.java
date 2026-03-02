@@ -1,6 +1,8 @@
 package Estoque_Produtos.Helpers;
 
 import Estoque_Produtos.Exceptions.ValidationException;
+import Estoque_Produtos.Logs.LogUser;
+import Estoque_Produtos.Logs.SystemLog;
 
 import java.util.Scanner;
 

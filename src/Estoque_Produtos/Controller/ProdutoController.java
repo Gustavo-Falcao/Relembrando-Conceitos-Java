@@ -1,10 +1,12 @@
 package Estoque_Produtos.Controller;
 
+import Estoque_Produtos.Exceptions.BusinessException;
+import Estoque_Produtos.Exceptions.NotFoundException;
 import Estoque_Produtos.Exceptions.ValidationException;
-import Estoque_Produtos.Helpers.SystemLog;
+import Estoque_Produtos.Helpers.Currency_Formatter;
+import Estoque_Produtos.Logs.SystemLog;
 import Estoque_Produtos.Produto;
-import Estoque_Produtos.Helpers.Entry_Validator;
-import Estoque_Produtos.Helpers.LogUser;
+import Estoque_Produtos.Logs.LogUser;
 import Estoque_Produtos.Service.ProdutoService;
 
 import java.util.Map;
@@ -22,33 +24,45 @@ public class ProdutoController {
         return  produtoService.getProdutos();
     }
 
-    public boolean cadastrarProduto(String sku, String nome, double preco, int quantidade) {
-        try{
+    public void cadastrarProduto(String sku, String nome, double preco, int quantidade) {
+        try {
             produtoService.cadastrarProduto(new Produto(sku, nome, preco, quantidade));
+            LogUser.logSucesso("Produto cadastrado com sucesso!!");
+            SystemLog.info("Produto cadastrado com sucesso | sku=" + sku + " nome=" + nome + " preco=" + Currency_Formatter.currencyFormatter(preco, 2) + " quantInicial=" + quantidade);
         } catch (ValidationException e) {
             LogUser.logAtencao("Erro ao cadastrar produto!!");
             SystemLog.warn(e.getMessage());
         }
-        return true;
     }
 
     public void addEstoque(String key, int quantidadeAddEstoque) {
-        //Tirar
-        if(Entry_Validator.isQuantidadeEntradaValido(quantidadeAddEstoque)) {
+        try {
             produtoService.addEstoque(key, quantidadeAddEstoque);
-       } else {
-           LogUser.logErro("Valor inválido para entrada de estoque!!");
-          //LogUser.logHistorico("Tentativa de entrada de estoque sem sucesso - [entrada inválida]");
-       }
+            LogUser.logSucesso("Estoque atualizado com sucesso!!");
+            SystemLog.info("Entrada de estoque realizada | sku=" + key + " add=" + quantidadeAddEstoque);
+        } catch (NotFoundException e) {
+            LogUser.logAtencao("Produto não encontrado!!");
+            SystemLog.warn(e.getMessage());
+        } catch (ValidationException e) {
+            LogUser.logAtencao("Entrada inválida para estoque!!");
+            SystemLog.warn(e.getMessage());
+        }
     }
 
     public void saidaEstoque(String key, int quantidadeSaidaEstoque) {
-        //Tirar
-        if(Entry_Validator.isQuantidadeSaidaValido(quantidadeSaidaEstoque)) {
+        try {
             produtoService.saidaEstoque(key, quantidadeSaidaEstoque);
-        } else {
-            LogUser.logErro("Valor inválido para a saida de estoque!!");
-            //LogUser.logHistorico("Tentativa de saida de estoque sem sucesso - [saida inválida]");
+            LogUser.logSucesso("Estoque autalizado com sucesso!!");
+            SystemLog.info("Saída de estoque realizada | sku=" + key + " remove=" + quantidadeSaidaEstoque);
+        } catch (NotFoundException e) {
+            LogUser.logAtencao("Produto não encontrado!!");
+            SystemLog.warn(e.getMessage());
+        } catch (ValidationException e) {
+            LogUser.logAtencao("Quantidade de entrada inválida!!");
+            SystemLog.warn(e.getMessage());
+        } catch (BusinessException e) {
+            LogUser.logAtencao("Estoque insuficiente!!");
+            SystemLog.warn(e.getMessage());
         }
     }
 
@@ -57,7 +71,14 @@ public class ProdutoController {
     }
 
     public void deletarProduto(String key) {
-        produtoService.deleteProduto(key);
+        try {
+            produtoService.deleteProduto(key);
+            LogUser.logSucesso("Produto removido com sucesso!!");
+            SystemLog.info("Produto removido | sku=" + key);
+        }catch (NotFoundException e) {
+            LogUser.logErro("Produto não encontrado!!");
+            SystemLog.warn(e.getMessage());
+        }
     }
 
     public double consultarValorTotalEstoque() {

@@ -1,4 +1,6 @@
-package Estoque_Produtos.Helpers;
+package Estoque_Produtos.Logs;
+
+import Estoque_Produtos.Helpers.DateHandler;
 
 import java.util.ArrayList;
 import java.util.List;

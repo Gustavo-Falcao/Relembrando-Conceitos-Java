@@ -1,9 +1,8 @@
 package Estoque_Produtos.View;
 
 import Estoque_Produtos.Controller.ProdutoController;
-import Estoque_Produtos.Produto;
 import Estoque_Produtos.Helpers.InputHelper;
-import Estoque_Produtos.Helpers.LogUser;
+import Estoque_Produtos.Logs.LogUser;
 
 public class ProdutoView {
 
@@ -18,7 +17,7 @@ public class ProdutoView {
         double preco = InputHelper.readDouble("Informe o preco do produto: ");
         int quantidade = InputHelper.readInt("Informe a quantidade inicial de estoque: ");
 
-        if(produtoController.cadastrarProduto(sku, nome, preco, quantidade)) LogUser.logSucesso("Produto cadastrado!!");
+        produtoController.cadastrarProduto(sku, nome, preco, quantidade);
     }
 
     public static void mostrarProdutos() {

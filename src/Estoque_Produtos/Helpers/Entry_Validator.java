@@ -13,12 +13,6 @@ public class Entry_Validator {
 
         return nomePuro;
     }
-    public static boolean isPrecoEntradaValido(double preco) {
-        return preco > 0;
-    }
-    public static boolean isQuantidadeEntradaValido(int quantidaDeEntrada) {
-        return quantidaDeEntrada > 0;
-    }
 
     public static boolean isQuantidadeSaidaValido(int quantidadeSaida) {
         return quantidadeSaida > 0;
