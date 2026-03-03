@@ -45,7 +45,7 @@ public class ProdutoService {
         }
 
         if(produto.getQuantidade() < 0) {
-            throw new ValidationException("Entrada inicial rejeitada: quantidade inváldida | sku=" + produto.getSku() + " add=" + produto.getQuantidade());
+            throw new ValidationException("Entrada inicial rejeitada: quantidade inválida | sku=" + produto.getSku() + " add=" + produto.getQuantidade());
         }
 
         produtos.put(produto.getSku(), produto);
@@ -63,14 +63,14 @@ public class ProdutoService {
     }
 
     public void deleteProduto(String key) {
-        Produto produto = findProdutoByKey(key).orElseThrow(() -> new NotFoundException("Produto não encontrado | sku=" + key));
+        Produto produto = findProdutoByKey(key).orElseThrow(() -> new NotFoundException("Produto não encontrado | sku=" + key + " operação=DELETAR_PRODUTO"));
 
         produtos.remove(key, produto);
     }
 
     public void addEstoque(String key, int quantidadeAddEstoque) {
 
-        Produto produto = findProdutoByKey(key).orElseThrow(() -> new NotFoundException("Produto não encontrado | sku=" + key));
+        Produto produto = findProdutoByKey(key).orElseThrow(() -> new NotFoundException("Produto não encontrado | sku=" + key + " operação=ADD_ESTOQUE"));
 
         if(quantidadeAddEstoque < 1) throw new ValidationException("Entrada rejeitada: quantidade inválida | sku=" + key + " add=" + quantidadeAddEstoque);
 
@@ -79,7 +79,7 @@ public class ProdutoService {
 
     public void saidaEstoque(String key, int quantidadeSaidaEstoque) {
 
-        Produto produto = findProdutoByKey(key).orElseThrow(() -> new NotFoundException("Produto não encontrado | sku=" + key));
+        Produto produto = findProdutoByKey(key).orElseThrow(() -> new NotFoundException("Produto não encontrado | sku=" + key + " operação=RETIRAR_ESTOQUE"));
 
         if(quantidadeSaidaEstoque < 1) throw new ValidationException("Saída rejeitada: quantidade inválida | sku=" + key + " remove=" + quantidadeSaidaEstoque);
 
@@ -103,6 +103,16 @@ public class ProdutoService {
     }
 
     public int consultarQuantidadeTotalEstoque() {
+        int quantidadeTotal = 0;
+
+        for(Produto produto : produtos.values()) {
+            quantidadeTotal += produto.getQuantidade();
+        }
+
+        return quantidadeTotal;
+    }
+
+    public int consultarQuantidadeProdutosCadastrados() {
         return produtos.size();
     }
 }

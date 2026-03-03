@@ -1,12 +1,13 @@
 package Estoque_Produtos;
 
 import Estoque_Produtos.Helpers.InputHelper;
+import Estoque_Produtos.Logs.SystemLog;
 import Estoque_Produtos.View.AppView;
 
 public class Main {
 
     public static void main(String[] args) {
-
+        SystemLog.info("App iniciado");
         int opcao;
 
         do {
@@ -14,5 +15,6 @@ public class Main {
             opcao = InputHelper.readInt("Escolha uma opcao: ");
             AppView.handlerMenuPrincipal(opcao);
         } while (opcao != 0);
+        SystemLog.info("App finalizado");
     }
 }

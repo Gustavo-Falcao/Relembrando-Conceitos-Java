@@ -6,19 +6,20 @@ import Estoque_Produtos.Logs.SystemLog;
 public class AppView {
 
     public static void mostrarMenuPrincipal() {
-        System.out.println("\n\n+ --------------------------------------------------- +");
-        System.out.println("|        [1] - Cadastrar produto                      |");
-        System.out.println("|        [2] - Entrada de estoque                     |");
-        System.out.println("|        [3] - Saida de estoque                       |");
-        System.out.println("|        [4] - Consultar produto                      |");
-        System.out.println("|        [5] - Listar todos os produtos               |");
-        System.out.println("|        [6] - Remover produto                        |");
-        System.out.println("|        [7] - Listar historico acoes                 |");
-        System.out.println("|        [8] - Consultar quantidade total estoque     |");
-        System.out.println("|        [9] - Consultar valor total estoque          |");
-        System.out.println("|        [10] - Consultar valor medio estoque         |");
-        System.out.println("|        [0] - Sair                                   |");
-        System.out.println("+ --------------------------------------------------- +");
+        System.out.println("\n\n+ ---------------------------------------------------------- +");
+        System.out.println("|        [1] - Cadastrar produto                             |");
+        System.out.println("|        [2] - Entrada de estoque                            |");
+        System.out.println("|        [3] - Saida de estoque                              |");
+        System.out.println("|        [4] - Consultar produto                             |");
+        System.out.println("|        [5] - Listar todos os produtos                      |");
+        System.out.println("|        [6] - Remover produto                               |");
+        System.out.println("|        [7] - Listar historico acoes                        |");
+        System.out.println("|        [8] - Consultar quantidade total estoque            |");
+        System.out.println("|        [9] - Consultar valor total estoque                 |");
+        System.out.println("|        [10] - Consultar valor medio estoque                |");
+        System.out.println("|        [11] - Consultar quantidade produtos cadastrados    |");
+        System.out.println("|        [0] - Sair                                          |");
+        System.out.println("+ ---------------------------------------------------------- +");
     }
 
     public static void handlerMenuPrincipal(int opcao) {
@@ -33,6 +34,7 @@ public class AppView {
             case 8 -> ProdutoView.consultarQuantidadeTotalEstoque();
             case 9 -> ProdutoView.consultarValorTotalEstoque();
             case 10 -> ProdutoView.consultarValorMedioEstoque();
+            case 11 -> ProdutoView.consultarQuantidadeProdutosCadastrados();
             case 0 -> System.out.println("Saindo...");
             default -> LogUser.logAtencao("Escolha uma opcao valida!!");
         }
