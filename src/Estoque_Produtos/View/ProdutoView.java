@@ -1,8 +1,11 @@
 package Estoque_Produtos.View;
 
 import Estoque_Produtos.Controller.ProdutoController;
+import Estoque_Produtos.Exceptions.NotFoundException;
 import Estoque_Produtos.Helpers.InputHelper;
 import Estoque_Produtos.Logs.LogUser;
+import Estoque_Produtos.Logs.SystemLog;
+import Estoque_Produtos.Produto;
 
 public class ProdutoView {
 
@@ -46,13 +49,13 @@ public class ProdutoView {
         System.out.println("<< Consultar Produto >>");
         String key = InputHelper.readString("Informe o código do produto: ");
 
-        produtoController.consultarProduto(key)
-                .ifPresentOrElse(produto -> System.out.println(produto.getProdutoFormatado()),
-                        () -> {
-                                LogUser.logErro("Produto não encontrado");
-                                //LogUser.logHistorico("Tentativa de consulta de produto sem sucesso - [SKU inválido]");
-                        }
-                );
+        try {
+            Produto produto = produtoController.consultarProdutoOrNotFoundException(key);
+            System.out.println(produto.getProdutoFormatado());
+        } catch (NotFoundException e) {
+            LogUser.logAtencao("Produto não encontrado!!");
+            SystemLog.warn(e.getMessage());
+        }
     }
 
     public static void deletarProduto() {

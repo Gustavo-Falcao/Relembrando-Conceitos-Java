@@ -3,7 +3,7 @@ package Estoque_Produtos.Controller;
 import Estoque_Produtos.Exceptions.BusinessException;
 import Estoque_Produtos.Exceptions.NotFoundException;
 import Estoque_Produtos.Exceptions.ValidationException;
-import Estoque_Produtos.Helpers.Currency_Formatter;
+import Estoque_Produtos.Helpers.CurrencyFormatter;
 import Estoque_Produtos.Logs.SystemLog;
 import Estoque_Produtos.Produto;
 import Estoque_Produtos.Logs.LogUser;
@@ -28,7 +28,7 @@ public class ProdutoController {
         try {
             produtoService.cadastrarProduto(new Produto(sku, nome, preco, quantidade));
             LogUser.logSucesso("Produto cadastrado com sucesso!!");
-            SystemLog.info("Produto cadastrado com sucesso | sku=" + sku + " nome=" + nome + " preco=" + Currency_Formatter.currencyFormatter(preco, 2) + " quantInicial=" + quantidade);
+            SystemLog.info("Produto cadastrado com sucesso | sku=" + sku + " nome=" + nome + " preco=" + CurrencyFormatter.currencyFormatter(preco, 2) + " quantInicial=" + quantidade);
         } catch (ValidationException e) {
             LogUser.logAtencao("Erro ao cadastrar produto!!");
             SystemLog.warn(e.getMessage());
@@ -66,8 +66,8 @@ public class ProdutoController {
         }
     }
 
-    public Optional<Produto> consultarProduto(String key) {
-        return produtoService.findProdutoByKey(key);
+    public Produto consultarProdutoOrNotFoundException(String key) {
+        return produtoService.findProdutoByKeyOrThrowNotFoundException(key);
     }
 
     public void deletarProduto(String key) {
@@ -82,23 +82,16 @@ public class ProdutoController {
     }
 
     public double consultarValorTotalEstoque() {
-        //Fazer conta no service
-        double precoTotalEstoque = 0.0;
-
-        for(Produto produto : produtoService.getProdutos().values()) {
-            precoTotalEstoque += produto.getPreco();
-        }
-
-        return precoTotalEstoque;
+        return produtoService.consultarValorTotalEstoque();
     }
 
     public double consultarValorMedioEstoque() {
-        //Fazer conta no service
-        return consultarValorTotalEstoque() / produtoService.getProdutos().size();
+        return produtoService.consultarValorMedioEstoque();
+
     }
 
     public int consultarQuantidadeTotalEstoque() {
-        return produtoService.getProdutos().size();
+        return produtoService.consultarQuantidadeTotalEstoque();
     }
 
 }

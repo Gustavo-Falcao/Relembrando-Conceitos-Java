@@ -1,6 +1,6 @@
 package Estoque_Produtos.Helpers;
 
-public class Currency_Formatter {
+public class CurrencyFormatter {
 
     public static String currencyFormatter(double valor, int casasDecimais) {
         String pattern = "%." + casasDecimais + "f";

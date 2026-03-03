@@ -87,4 +87,22 @@ public class ProdutoService {
 
         produto.setQuantidade(produto.getQuantidade() - quantidadeSaidaEstoque);
     }
+
+    public double consultarValorTotalEstoque() {
+        double precoTotalEstoque = 0;
+        for(Produto produto : produtos.values()) {
+            precoTotalEstoque += produto.getPreco();
+        }
+        return precoTotalEstoque;
+    }
+
+    public double consultarValorMedioEstoque() {
+        double valorTotalEstoque = consultarValorTotalEstoque();
+
+        return valorTotalEstoque / produtos.size();
+    }
+
+    public int consultarQuantidadeTotalEstoque() {
+        return produtos.size();
+    }
 }
