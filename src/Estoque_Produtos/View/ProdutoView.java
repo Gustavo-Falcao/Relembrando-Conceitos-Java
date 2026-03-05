@@ -86,5 +86,9 @@ public class ProdutoView {
 
         produtoController.consultarQuantidadeProdutosCadastrados();
     }
+
+    public static void exportarDadosCsv() {
+        produtoController.exportarDadosCsv();
+    }
 }
 

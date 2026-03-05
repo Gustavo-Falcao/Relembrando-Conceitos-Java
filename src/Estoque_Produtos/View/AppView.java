@@ -18,6 +18,7 @@ public class AppView {
         System.out.println("|        [9] - Consultar valor total estoque                 |");
         System.out.println("|        [10] - Consultar valor medio estoque                |");
         System.out.println("|        [11] - Consultar quantidade produtos cadastrados    |");
+        System.out.println("|        [12] - Exportar dados para csv                      |");
         System.out.println("|        [0] - Sair                                          |");
         System.out.println("+ ---------------------------------------------------------- +");
     }
@@ -35,6 +36,7 @@ public class AppView {
             case 9 -> ProdutoView.consultarValorTotalEstoque();
             case 10 -> ProdutoView.consultarValorMedioEstoque();
             case 11 -> ProdutoView.consultarQuantidadeProdutosCadastrados();
+            case 12 -> ProdutoView.exportarDadosCsv();
             case 0 -> System.out.println("Saindo...");
             default -> LogUser.logAtencao("Escolha uma opcao valida!!");
         }

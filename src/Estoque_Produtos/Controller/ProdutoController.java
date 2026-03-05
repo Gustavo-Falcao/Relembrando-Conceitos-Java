@@ -1,5 +1,6 @@
 package Estoque_Produtos.Controller;
 
+import Estoque_Produtos.Dados.ExportDados;
 import Estoque_Produtos.Exceptions.BusinessException;
 import Estoque_Produtos.Exceptions.NotFoundException;
 import Estoque_Produtos.Exceptions.ValidationException;
@@ -103,6 +104,10 @@ public class ProdutoController {
         int quantidaeProdutosCadastrados = produtoService.consultarQuantidadeProdutosCadastrados();
         SystemLog.info("Consulta quantidade produtos cadastrados | produtos=" + quantidaeProdutosCadastrados);
         System.out.println("-> " + quantidaeProdutosCadastrados + " produtos");
+    }
+
+    public void exportarDadosCsv() {
+        ExportDados.exportDataToCsvFile(produtoService.getProdutos());
     }
 
 }
