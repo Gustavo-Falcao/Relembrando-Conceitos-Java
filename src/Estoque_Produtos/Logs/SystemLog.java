@@ -31,7 +31,7 @@ public class SystemLog {
 
     private static void registrarLogArquivo(String log) {
         try(FileWriter fileWriter = new FileWriter("src/Estoque_Produtos/Logs/log.txt", true)) {
-            fileWriter.write(log+"\n");
+            fileWriter.write("\n"+log);
         } catch (IOException e) {
             error("Falha ao tentar registrar log no arquivo");
             System.out.println(e.getMessage());

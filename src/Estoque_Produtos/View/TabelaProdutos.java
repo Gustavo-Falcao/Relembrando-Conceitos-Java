@@ -1,5 +1,6 @@
 package Estoque_Produtos.View;
 
+import Estoque_Produtos.Helpers.CurrencyFormatter;
 import Estoque_Produtos.Produto;
 import com.sun.tools.jconsole.JConsoleContext;
 
@@ -70,7 +71,7 @@ public class TabelaProdutos {
     private static String formatarCampoDadosProduto(int widthCodigoProduto, int widthNome, int widthPreco, int widthQuantidade, Produto produto) {
         return "|" + campoFormatado(widthCodigoProduto, produto.getSku())
                 + "|" + campoFormatado(widthNome, produto.getNome())
-                + "|" + campoFormatado(widthPreco, String.valueOf(produto.getPreco()))
+                + "|" + campoFormatado(widthPreco, CurrencyFormatter.currencyFormatter(produto.getPreco()))
                 + "|" + campoFormatado(widthQuantidade, String.valueOf(produto.getQuantidade()))
                 + "|";
     }

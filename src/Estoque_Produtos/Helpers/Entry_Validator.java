@@ -14,8 +14,4 @@ public class Entry_Validator {
         return nomePuro;
     }
 
-    public static boolean isQuantidadeSaidaValido(int quantidadeSaida) {
-        return quantidadeSaida > 0;
-    }
-
 }

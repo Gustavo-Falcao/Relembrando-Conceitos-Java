@@ -1,6 +1,6 @@
 package Estoque_Produtos.Controller;
 
-import Estoque_Produtos.Dados.ExportDados;
+import Estoque_Produtos.Dados.DataHandler;
 import Estoque_Produtos.Exceptions.BusinessException;
 import Estoque_Produtos.Exceptions.NotFoundException;
 import Estoque_Produtos.Exceptions.ValidationException;
@@ -46,7 +46,7 @@ public class ProdutoController {
         executarAcaoSemRetornoTratandoExcecao(() -> {
             produtoService.cadastrarProduto(new Produto(sku, nome, preco, quantidade));
             LogUser.logSucesso("Produto cadastrado com sucesso!!");
-            SystemLog.info("Produto cadastrado com sucesso | sku=" + sku + " nome=" + nome + " preco=" + CurrencyFormatter.currencyFormatter(preco, 2) + " quantInicial=" + quantidade);
+            SystemLog.info("Produto cadastrado com sucesso | sku=" + sku + " nome=" + nome + " preco=" + CurrencyFormatter.currencyFormatter(preco) + " quantInicial=" + quantidade);
         });
     }
 
@@ -107,7 +107,7 @@ public class ProdutoController {
     }
 
     public void exportarDadosCsv() {
-        ExportDados.exportDataToCsvFile(produtoService.getProdutos());
+        DataHandler.exportDataToCsvFile(produtoService.getProdutos());
     }
 
 }
