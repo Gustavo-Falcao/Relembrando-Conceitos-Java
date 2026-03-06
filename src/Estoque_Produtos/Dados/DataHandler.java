@@ -35,16 +35,23 @@ public class DataHandler {
     public static Map<String,Produto> loadDataFromCsv() {
         String linha;
         Map<String, Produto> produtoMap = new HashMap<>();
+        boolean primeiraLinha = true;
         File file = new File(filePath);
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
+                if(!primeiraLinha) {
+                    primeiraLinha = false;
+                    continue;
+                }
                 linha = scanner.nextLine();
                 String [] atributos = linha.split(";");
 
                 String sku = atributos[0];
                 String nome = atributos[1];
-                double preco = Double.parseDouble(atributos[2].replace("R$", ""));
+                String precoSoValor = atributos[2].replace("R$\s", "");
+                String precoPdouble = precoSoValor.replace(",", ".");
+                double preco = Double.parseDouble(precoPdouble);
                 int quantidade = Integer.parseInt(atributos[3]);
 
                 produtoMap.put(sku, new Produto(sku, nome, preco, quantidade));
