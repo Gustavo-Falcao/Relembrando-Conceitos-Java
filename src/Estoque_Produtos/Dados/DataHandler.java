@@ -40,7 +40,8 @@ public class DataHandler {
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-                if(!primeiraLinha) {
+                if(primeiraLinha) {
+                    scanner.nextLine();
                     primeiraLinha = false;
                     continue;
                 }
@@ -49,7 +50,7 @@ public class DataHandler {
 
                 String sku = atributos[0];
                 String nome = atributos[1];
-                String precoSoValor = atributos[2].replace("R$\s", "");
+                String precoSoValor = atributos[2].replaceAll("[^0-9//,]+", "");
                 String precoPdouble = precoSoValor.replace(",", ".");
                 double preco = Double.parseDouble(precoPdouble);
                 int quantidade = Integer.parseInt(atributos[3]);
@@ -60,6 +61,8 @@ public class DataHandler {
             scanner.close();
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
