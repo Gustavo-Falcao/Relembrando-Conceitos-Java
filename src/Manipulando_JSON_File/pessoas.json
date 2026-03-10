@@ -1,0 +1,101 @@
+[ {
+  "id" : "1dd38659-1e96-41e3-ad1d-182e759f1f4c",
+  "nome" : "Geferson da Silva",
+  "telefone" : "(41) 99123-4501",
+  "email" : "geferson.silva@example.com"
+}, {
+  "id" : "fbfe7389-76a3-4341-8f88-3f01ce77c55e",
+  "nome" : "Maria Eduarda Souza",
+  "telefone" : "(11) 99654-7821",
+  "email" : "maria.eduarda.souza@example.com"
+}, {
+  "id" : "d581307c-643a-405b-8447-fb574b3af817",
+  "nome" : "João Pedro Almeida",
+  "telefone" : "(21) 99801-2245",
+  "email" : "joao.pedro.almeida@example.com"
+}, {
+  "id" : "e708ee38-5882-42d9-b866-9151181dad72",
+  "nome" : "Ana Carolina Ribeiro",
+  "telefone" : "(31) 98540-1123",
+  "email" : "ana.carolina.ribeiro@example.com"
+}, {
+  "id" : "3d66021f-8682-40e0-8f3b-2a717d267862",
+  "nome" : "Lucas Martins",
+  "telefone" : "(51) 99770-3344",
+  "email" : "lucas.martins@example.com"
+}, {
+  "id" : "b7cc7c17-2634-4c4c-9805-6a73f5aad73f",
+  "nome" : "Beatriz Ferreira",
+  "telefone" : "(19) 99412-7788",
+  "email" : "beatriz.ferreira@example.com"
+}, {
+  "id" : "828d7125-7db5-4ac6-9b49-133dab0c195c",
+  "nome" : "Rafael Lima",
+  "telefone" : "(85) 98876-9021",
+  "email" : "rafael.lima@example.com"
+}, {
+  "id" : "913c4995-c075-4ecd-80f5-2c1afe618b38",
+  "nome" : "Camila Rocha",
+  "telefone" : "(71) 98745-1256",
+  "email" : "camila.rocha@example.com"
+}, {
+  "id" : "ab87900b-b1e3-4574-924e-c2d744479a0a",
+  "nome" : "Pedro Henrique Castro",
+  "telefone" : "(41) 99222-4477",
+  "email" : "pedro.henrique.castro@example.com"
+}, {
+  "id" : "78535d12-27a7-4dae-b043-8755e2c5728e",
+  "nome" : "Larissa Oliveira",
+  "telefone" : "(62) 99660-3311",
+  "email" : "larissa.oliveira@example.com"
+}, {
+  "id" : "98603227-331f-444c-a092-deae8e74f0ef",
+  "nome" : "Felipe Araújo",
+  "telefone" : "(11) 98111-2233",
+  "email" : "larissa.oliveira@example.com"
+}, {
+  "id" : "351db8ed-27e4-4040-8ea2-58675ab4498b",
+  "nome" : "Carolina Mendes",
+  "telefone" : "(27) 99921-8899",
+  "email" : "carolina.mendes@example.com"
+}, {
+  "id" : "9f7958af-15a5-45b8-afa9-374263477951",
+  "nome" : "Thiago Santos",
+  "telefone" : "(81) 98770-6644",
+  "email" : "thiago.santos@example.com"
+}, {
+  "id" : "36efd7fc-938b-44ee-9c41-8c8ddb2f4def",
+  "nome" : "Aline Barros",
+  "telefone" : "(48) 99612-5566",
+  "email" : "aline.barros@example.com"
+}, {
+  "id" : "a777f8ce-1e5d-411f-ba5d-9ef6646c75a8",
+  "nome" : "Bruno Xavier",
+  "telefone" : "(21) 98234-7788",
+  "email" : "bruno.xavier@example.com"
+}, {
+  "id" : "14e67d70-1239-46ac-8efe-1ffdb84b9860",
+  "nome" : "Patrícia Nogueira",
+  "telefone" : "(31) 98444-9090",
+  "email" : "patricia.nogueira@example.com"
+}, {
+  "id" : "712edf79-0337-4801-9a59-87564c873aee",
+  "nome" : "Diego Fernandes",
+  "telefone" : "(67) 99110-3344",
+  "email" : "diego.fernandes@example.com"
+}, {
+  "id" : "c7507f65-7886-4454-9609-e6cfed8b49d3",
+  "nome" : "Juliana Pires",
+  "telefone" : "(16) 99740-2211",
+  "email" : "juliana.pires@example.com"
+}, {
+  "id" : "02f54efd-dd59-4f03-a036-c2cb6b628508",
+  "nome" : "Mateus Correia",
+  "telefone" : "(98) 98765-4433",
+  "email" : "mateus.correia@example.com"
+}, {
+  "id" : "07311bad-eaec-4d67-b630-095e02cf194a",
+  "nome" : "Isabela Martins",
+  "telefone" : "(41) 99555-8811",
+  "email" : "isabela.martins@example.com"
+} ]
