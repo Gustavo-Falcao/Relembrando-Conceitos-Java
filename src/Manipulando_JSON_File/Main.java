@@ -1,6 +1,5 @@
 package Manipulando_JSON_File;
 
-import Agenda_Contatos.Contato;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
