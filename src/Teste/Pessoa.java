@@ -44,7 +44,7 @@ public class Pessoa {
         this.email = email;
     }
 
-    public String getPessoaFormatado() {
+    public String mostrarPessoaFormatado() {
         return
                 "\nId: " + id +
                         "\nNome: " + nome +

@@ -1,0 +1,702 @@
+[
+  {
+    "id": "4dbec807-1aa0-4630-b729-767684414f42",
+    "nome": "Brasília",
+    "sigla": "BSB",
+    "distrito": "Distrito Federal",
+    "populacao": 3090000
+  },
+  {
+    "id": "434cc9f7-850b-4ff4-862d-a748a3907adf",
+    "nome": "Washington, D.C.",
+    "sigla": "WDC",
+    "distrito": "District of Columbia",
+    "populacao": 712000
+  },
+  {
+    "id": "3a6a790f-eef4-4aee-a89a-42c0a5c04bee",
+    "nome": "Tóquio",
+    "sigla": "HND",
+    "distrito": "Tóquio",
+    "populacao": 14000000
+  },
+  {
+    "id": "f207b4a9-ad62-4bf4-b3c3-fd6aa6ea5f54",
+    "nome": "Berlim",
+    "sigla": "BER",
+    "distrito": "Berlim",
+    "populacao": 3700000
+  },
+  {
+    "id": "f6092e8b-b1b2-4549-bfc4-e5d8377109bd",
+    "nome": "Luanda",
+    "sigla": "LAD",
+    "distrito": "Luanda",
+    "populacao": 9000000
+  },
+  {
+    "id": "a2c4439f-6114-46b3-aea9-edaa54b6b0d1",
+    "nome": "Lisboa",
+    "sigla": "LIS",
+    "distrito": "Lisboa",
+    "populacao": 545000
+  },
+  {
+    "id": "0e7524f7-8642-434f-865a-f98b7194aab2",
+    "nome": "Nova Deli",
+    "sigla": "DEL",
+    "distrito": "Deli",
+    "populacao": 32000000
+  },
+  {
+    "id": "e465c4db-8423-4b97-a806-f7325aff232a",
+    "nome": "Paris",
+    "sigla": "PAR",
+    "distrito": "Île-de-France",
+    "populacao": 2100000
+  },
+  {
+    "id": "e8219a13-c10f-4aeb-ba5d-993890c81361",
+    "nome": "Pequim",
+    "sigla": "PEK",
+    "distrito": "Pequim",
+    "populacao": 21500000
+  },
+  {
+    "id": "e6fc94a7-1c00-4298-8acf-e8962eaea7e9",
+    "nome": "Ottawa",
+    "sigla": "YOW",
+    "distrito": "Ontário",
+    "populacao": 1000000
+  },
+  {
+    "id": "197cb318-9cec-49e7-b5bc-b205467369b8",
+    "nome": "Buenos Aires",
+    "sigla": "BUE",
+    "distrito": "CABA",
+    "populacao": 3100000
+  },
+  {
+    "id": "ed559104-f04a-460b-85e0-38c9cf99a4e8",
+    "nome": "Roma",
+    "sigla": "ROM",
+    "distrito": "Lácio",
+    "populacao": 2800000
+  },
+  {
+    "id": "909debd0-1da7-47a9-b36f-81c00b9fc426",
+    "nome": "Cidade do México",
+    "sigla": "MEX",
+    "distrito": "CDMX",
+    "populacao": 9200000
+  },
+  {
+    "id": "b86a2e84-54e4-43ab-93a5-8260eb34e266",
+    "nome": "Moscou",
+    "sigla": "MOW",
+    "distrito": "Moscou",
+    "populacao": 13000000
+  },
+  {
+    "id": "2798b88f-9360-4819-bd92-b9bc68a47276",
+    "nome": "Londres",
+    "sigla": "LON",
+    "distrito": "Grande Londres",
+    "populacao": 9000000
+  },
+  {
+    "id": "c4c79777-2413-402c-8ebd-97df56c6afe3",
+    "nome": "Madri",
+    "sigla": "MAD",
+    "distrito": "Madri",
+    "populacao": 3300000
+  },
+  {
+    "id": "a324f636-810b-4181-9092-f6b34995355a",
+    "nome": "Camberra",
+    "sigla": "CBR",
+    "distrito": "ACT",
+    "populacao": 430000
+  },
+  {
+    "id": "7038841b-dd9d-490a-94c3-1ae305841c0b",
+    "nome": "Seul",
+    "sigla": "SEL",
+    "distrito": "Gyeonggi",
+    "populacao": 9700000
+  },
+  {
+    "id": "e7bc5ed0-00c1-4e94-a9a5-c1648c054e15",
+    "nome": "Pretória",
+    "sigla": "PRY",
+    "distrito": "Gauteng",
+    "populacao": 2400000
+  },
+  {
+    "id": "40734066-b26b-46dd-a848-c2f9f1dae6c9",
+    "nome": "Ancara",
+    "sigla": "ANC",
+    "distrito": "Ancara",
+    "populacao": 5700000
+  },
+  {
+    "id": "7b4f120a-ef0e-4b98-af83-6786a21683a9",
+    "nome": "Capital de Egito",
+    "sigla": "C20",
+    "distrito": "Província Central",
+    "populacao": 134826
+  },
+  {
+    "id": "f237a8d9-782e-4d14-9a45-a0cbf5c6dd30",
+    "nome": "Capital de Nigéria",
+    "sigla": "C21",
+    "distrito": "Província Central",
+    "populacao": 4280815
+  },
+  {
+    "id": "76b8e6ee-fa9d-451b-ac23-c4356b28ad47",
+    "nome": "Capital de Paquistão",
+    "sigla": "C22",
+    "distrito": "Província Central",
+    "populacao": 4721798
+  },
+  {
+    "id": "cafb52e5-ee18-417f-96c0-ff03ade64261",
+    "nome": "Capital de Indonésia",
+    "sigla": "C23",
+    "distrito": "Província Central",
+    "populacao": 4688773
+  },
+  {
+    "id": "2a3cde66-6bae-4450-ad19-536535750ed3",
+    "nome": "Capital de Vietnã",
+    "sigla": "C24",
+    "distrito": "Província Central",
+    "populacao": 2803544
+  },
+  {
+    "id": "3f7a75be-48f2-4896-a1ad-7c313ce00b07",
+    "nome": "Capital de Tailândia",
+    "sigla": "C25",
+    "distrito": "Província Central",
+    "populacao": 218925
+  },
+  {
+    "id": "655fe07e-80b6-4176-ba4f-381e9ed826d5",
+    "nome": "Capital de Filipinas",
+    "sigla": "C26",
+    "distrito": "Província Central",
+    "populacao": 2554758
+  },
+  {
+    "id": "3b67e449-d5fa-4a87-87f2-5e9a76ec23b0",
+    "nome": "Capital de Arábia Saudita",
+    "sigla": "C27",
+    "distrito": "Província Central",
+    "populacao": 3270996
+  },
+  {
+    "id": "3d034fe8-4cde-466e-a332-ba3cb4102670",
+    "nome": "Capital de Irã",
+    "sigla": "C28",
+    "distrito": "Província Central",
+    "populacao": 2332595
+  },
+  {
+    "id": "dae16405-313d-4397-81fc-533585eece50",
+    "nome": "Capital de Iraque",
+    "sigla": "C29",
+    "distrito": "Província Central",
+    "populacao": 952370
+  },
+  {
+    "id": "c126daf4-d548-4319-9da0-a281fe617539",
+    "nome": "Capital de Colômbia",
+    "sigla": "C30",
+    "distrito": "Província Central",
+    "populacao": 488765
+  },
+  {
+    "id": "4e623143-f896-4306-ba88-c6cd53fb475e",
+    "nome": "Capital de Peru",
+    "sigla": "C31",
+    "distrito": "Província Central",
+    "populacao": 140721
+  },
+  {
+    "id": "a6b8e81d-4f52-44cc-a634-a01f98fb49d9",
+    "nome": "Capital de Chile",
+    "sigla": "C32",
+    "distrito": "Província Central",
+    "populacao": 1774057
+  },
+  {
+    "id": "a77921bf-9d86-40a5-98f3-8ffe6b4aa59d",
+    "nome": "Capital de Venezuela",
+    "sigla": "C33",
+    "distrito": "Província Central",
+    "populacao": 2226413
+  },
+  {
+    "id": "094485fa-2bfc-44d9-8a00-812dc7c06f6e",
+    "nome": "Capital de Equador",
+    "sigla": "C34",
+    "distrito": "Província Central",
+    "populacao": 373515
+  },
+  {
+    "id": "3ea62ab2-20d5-4955-a24b-27f31b344e91",
+    "nome": "Capital de Bolívia",
+    "sigla": "C35",
+    "distrito": "Província Central",
+    "populacao": 4787349
+  },
+  {
+    "id": "ab68047d-bae7-4aeb-a62a-e4e71cd2709f",
+    "nome": "Capital de Paraguai",
+    "sigla": "C36",
+    "distrito": "Província Central",
+    "populacao": 1342052
+  },
+  {
+    "id": "3e17076a-7442-4673-aff9-f337b84eb8df",
+    "nome": "Capital de Uruguai",
+    "sigla": "C37",
+    "distrito": "Província Central",
+    "populacao": 1120377
+  },
+  {
+    "id": "ccce0c6c-b04d-4c1a-a863-b123a2be7c95",
+    "nome": "Capital de Guiana",
+    "sigla": "C38",
+    "distrito": "Província Central",
+    "populacao": 3613380
+  },
+  {
+    "id": "8a7fdeae-3f5d-4918-b485-d16dcdee6035",
+    "nome": "Capital de Suriname",
+    "sigla": "C39",
+    "distrito": "Província Central",
+    "populacao": 3368873
+  },
+  {
+    "id": "e28d8152-9fbf-4d39-a984-e0bd74f0ae94",
+    "nome": "Capital de Grécia",
+    "sigla": "C40",
+    "distrito": "Província Central",
+    "populacao": 2742097
+  },
+  {
+    "id": "57206c98-05ed-4a47-9213-855b4bd3d97f",
+    "nome": "Capital de Suécia",
+    "sigla": "C41",
+    "distrito": "Província Central",
+    "populacao": 1684870
+  },
+  {
+    "id": "24aee03e-1bb0-4154-89a2-c688989e8b66",
+    "nome": "Capital de Noruega",
+    "sigla": "C42",
+    "distrito": "Província Central",
+    "populacao": 1895791
+  },
+  {
+    "id": "fe7c8ef1-7417-443e-b26b-d68512de139f",
+    "nome": "Capital de Dinamarca",
+    "sigla": "C43",
+    "distrito": "Província Central",
+    "populacao": 1865870
+  },
+  {
+    "id": "fd72c888-289e-4185-ae16-725f5e496f9b",
+    "nome": "Capital de Finlândia",
+    "sigla": "C44",
+    "distrito": "Província Central",
+    "populacao": 1366338
+  },
+  {
+    "id": "1335f9db-cea9-4df9-a646-59f1d85f9721",
+    "nome": "Capital de Polônia",
+    "sigla": "C45",
+    "distrito": "Província Central",
+    "populacao": 2457575
+  },
+  {
+    "id": "f7300a95-e1a5-4d35-b26d-e5482458245d",
+    "nome": "Capital de Áustria",
+    "sigla": "C46",
+    "distrito": "Província Central",
+    "populacao": 4510598
+  },
+  {
+    "id": "bab50e63-1dde-4d88-909d-8810c2388f6b",
+    "nome": "Capital de Suíça",
+    "sigla": "C47",
+    "distrito": "Província Central",
+    "populacao": 2446152
+  },
+  {
+    "id": "10e28031-b504-415c-a07c-c4c2420300bd",
+    "nome": "Capital de Bélgica",
+    "sigla": "C48",
+    "distrito": "Província Central",
+    "populacao": 1911155
+  },
+  {
+    "id": "2a9329d3-cfcf-45cb-ac45-5ab62dca89ff",
+    "nome": "Capital de Holanda",
+    "sigla": "C49",
+    "distrito": "Província Central",
+    "populacao": 332253
+  },
+  {
+    "id": "b8f1d297-ff63-45b0-a57e-b2930dcebc8a",
+    "nome": "Capital de Quênia",
+    "sigla": "C50",
+    "distrito": "Província Central",
+    "populacao": 377530
+  },
+  {
+    "id": "f7c8d44e-af79-4019-938d-872487544315",
+    "nome": "Capital de Etiópia",
+    "sigla": "C51",
+    "distrito": "Província Central",
+    "populacao": 4519652
+  },
+  {
+    "id": "15f32974-6461-4ee8-b637-2eaf288deba3",
+    "nome": "Capital de Gana",
+    "sigla": "C52",
+    "distrito": "Província Central",
+    "populacao": 917228
+  },
+  {
+    "id": "4ff6e31a-08ee-4982-a86f-c6f6031b9dc7",
+    "nome": "Capital de Senegal",
+    "sigla": "C53",
+    "distrito": "Província Central",
+    "populacao": 1199454
+  },
+  {
+    "id": "212272cf-53e3-4054-955d-d2e0622daae4",
+    "nome": "Capital de Marrocos",
+    "sigla": "C54",
+    "distrito": "Província Central",
+    "populacao": 1740020
+  },
+  {
+    "id": "24d8c076-e5a1-4ad2-b7bb-87994527ca96",
+    "nome": "Capital de Argélia",
+    "sigla": "C55",
+    "distrito": "Província Central",
+    "populacao": 1650780
+  },
+  {
+    "id": "04752f4e-bda2-49b1-93ca-7b7ce89f12a8",
+    "nome": "Capital de Tunísia",
+    "sigla": "C56",
+    "distrito": "Província Central",
+    "populacao": 3712429
+  },
+  {
+    "id": "ab4515da-32be-4db5-a8b4-000418094a3f",
+    "nome": "Capital de Líbia",
+    "sigla": "C57",
+    "distrito": "Província Central",
+    "populacao": 4234540
+  },
+  {
+    "id": "e6fed4b8-f8c8-48fe-8bb3-5a8946b71400",
+    "nome": "Capital de Ucrânia",
+    "sigla": "C58",
+    "distrito": "Província Central",
+    "populacao": 943172
+  },
+  {
+    "id": "ee384419-c9d3-4a47-bd44-92b08192f95e",
+    "nome": "Capital de Romênia",
+    "sigla": "C59",
+    "distrito": "Província Central",
+    "populacao": 4647388
+  },
+  {
+    "id": "6be9c680-4c9b-4a17-ae24-4e697a13c386",
+    "nome": "Capital de Hungria",
+    "sigla": "C60",
+    "distrito": "Província Central",
+    "populacao": 2026239
+  },
+  {
+    "id": "1208b952-6fa2-48d6-b3c0-dffbe10c2a6f",
+    "nome": "Capital de República Checa",
+    "sigla": "C61",
+    "distrito": "Província Central",
+    "populacao": 1662004
+  },
+  {
+    "id": "85e5973f-37b6-4980-9076-e2ff61c30297",
+    "nome": "Capital de Eslováquia",
+    "sigla": "C62",
+    "distrito": "Província Central",
+    "populacao": 825811
+  },
+  {
+    "id": "56564fb2-bb93-49ca-997e-d92f10638a1e",
+    "nome": "Capital de Irlanda",
+    "sigla": "C63",
+    "distrito": "Província Central",
+    "populacao": 4833173
+  },
+  {
+    "id": "c4aff63d-954d-42b5-a8b3-a88f4f8be440",
+    "nome": "Capital de Nova Zelândia",
+    "sigla": "C64",
+    "distrito": "Província Central",
+    "populacao": 3786015
+  },
+  {
+    "id": "95c95a9d-6506-426e-ad72-57b67106869e",
+    "nome": "Capital de Israel",
+    "sigla": "C65",
+    "distrito": "Província Central",
+    "populacao": 4222347
+  },
+  {
+    "id": "14cd6a66-311f-4945-ae5b-848aae329a4c",
+    "nome": "Capital de Jordânia",
+    "sigla": "C66",
+    "distrito": "Província Central",
+    "populacao": 2696704
+  },
+  {
+    "id": "4b657597-bea6-4239-9660-41b5d6f1e8a9",
+    "nome": "Capital de Líbano",
+    "sigla": "C67",
+    "distrito": "Província Central",
+    "populacao": 2316662
+  },
+  {
+    "id": "beb34b74-f278-4c1e-90ba-516ece69c7d8",
+    "nome": "Capital de Catar",
+    "sigla": "C68",
+    "distrito": "Província Central",
+    "populacao": 3511131
+  },
+  {
+    "id": "8d6fdfa0-c08a-4ce1-8165-79154eccc853",
+    "nome": "Capital de Emirados Árabes Unidos",
+    "sigla": "C69",
+    "distrito": "Província Central",
+    "populacao": 516147
+  },
+  {
+    "id": "a92400ca-d8b2-447b-8f64-c6f87b6d2560",
+    "nome": "Capital de Malásia",
+    "sigla": "C70",
+    "distrito": "Província Central",
+    "populacao": 1806747
+  },
+  {
+    "id": "c8dcf944-3a68-4473-afe5-c43eb711f768",
+    "nome": "Capital de Singapura",
+    "sigla": "C71",
+    "distrito": "Província Central",
+    "populacao": 3531883
+  },
+  {
+    "id": "4b2ef577-400c-41af-bb3a-7e8950cff224",
+    "nome": "Capital de Cazaquistão",
+    "sigla": "C72",
+    "distrito": "Província Central",
+    "populacao": 4378653
+  },
+  {
+    "id": "e99b100d-cf6b-46b4-90f5-2f0898fcb982",
+    "nome": "Capital de Uzbequistão",
+    "sigla": "C73",
+    "distrito": "Província Central",
+    "populacao": 735353
+  },
+  {
+    "id": "9760dc9e-4f4a-478b-8472-dfb009de2744",
+    "nome": "Capital de Azerbaijão",
+    "sigla": "C74",
+    "distrito": "Província Central",
+    "populacao": 952776
+  },
+  {
+    "id": "c1abec00-2eed-4a8f-a5d2-e97a1c6ca979",
+    "nome": "Capital de Geórgia",
+    "sigla": "C75",
+    "distrito": "Província Central",
+    "populacao": 2644827
+  },
+  {
+    "id": "afcca237-1208-4038-b986-cc7e919e5a2b",
+    "nome": "Capital de Armênia",
+    "sigla": "C76",
+    "distrito": "Província Central",
+    "populacao": 4163359
+  },
+  {
+    "id": "327d7cea-5b0f-473e-adfb-80588dfe5951",
+    "nome": "Capital de Camboja",
+    "sigla": "C77",
+    "distrito": "Província Central",
+    "populacao": 4920114
+  },
+  {
+    "id": "f8476c03-3d40-491b-bb78-c3df6b70e67b",
+    "nome": "Capital de Laos",
+    "sigla": "C78",
+    "distrito": "Província Central",
+    "populacao": 4483901
+  },
+  {
+    "id": "231eb63d-6e50-4334-912a-088707a3e4b2",
+    "nome": "Capital de Mianmar",
+    "sigla": "C79",
+    "distrito": "Província Central",
+    "populacao": 3910033
+  },
+  {
+    "id": "2b21f464-986d-4cbf-b772-de60d511bfb5",
+    "nome": "Capital de Cuba",
+    "sigla": "C80",
+    "distrito": "Província Central",
+    "populacao": 397414
+  },
+  {
+    "id": "4a295fd7-50ac-47ea-b857-47156bbfb196",
+    "nome": "Capital de Haiti",
+    "sigla": "C81",
+    "distrito": "Província Central",
+    "populacao": 4260899
+  },
+  {
+    "id": "c0fb653c-dced-4ae4-ac30-fda2c9d6a610",
+    "nome": "Capital de República Dominicana",
+    "sigla": "C82",
+    "distrito": "Província Central",
+    "populacao": 3981005
+  },
+  {
+    "id": "1f7b1b42-24be-4b95-955a-3367184fa12a",
+    "nome": "Capital de Jamaica",
+    "sigla": "C83",
+    "distrito": "Província Central",
+    "populacao": 988429
+  },
+  {
+    "id": "9228f370-8881-4208-98b3-eeb659686229",
+    "nome": "Capital de Costa Rica",
+    "sigla": "C84",
+    "distrito": "Província Central",
+    "populacao": 2909065
+  },
+  {
+    "id": "7be9f7cb-e44f-4780-8bea-151ebb8b2567",
+    "nome": "Capital de Panamá",
+    "sigla": "C85",
+    "distrito": "Província Central",
+    "populacao": 1161291
+  },
+  {
+    "id": "deebdeb0-d480-47fb-82aa-51548d2559b0",
+    "nome": "Capital de Guatemala",
+    "sigla": "C86",
+    "distrito": "Província Central",
+    "populacao": 3948445
+  },
+  {
+    "id": "e26f2409-19cd-4f71-970d-d2debe6c2b6c",
+    "nome": "Capital de Honduras",
+    "sigla": "C87",
+    "distrito": "Província Central",
+    "populacao": 4002036
+  },
+  {
+    "id": "c15f5446-cbc9-427a-a122-847f663e3036",
+    "nome": "Capital de El Salvador",
+    "sigla": "C88",
+    "distrito": "Província Central",
+    "populacao": 3472307
+  },
+  {
+    "id": "849222bf-6e13-43a1-afc6-bc4144c67987",
+    "nome": "Capital de Nicarágua",
+    "sigla": "C89",
+    "distrito": "Província Central",
+    "populacao": 2483121
+  },
+  {
+    "id": "1b4f1d45-3ba3-4ab9-882b-cc9bf59d2a05",
+    "nome": "Capital de Islândia",
+    "sigla": "C90",
+    "distrito": "Província Central",
+    "populacao": 518371
+  },
+  {
+    "id": "64059a5a-96ae-499f-90fc-52a30794c9f5",
+    "nome": "Capital de Croácia",
+    "sigla": "C91",
+    "distrito": "Província Central",
+    "populacao": 1085494
+  },
+  {
+    "id": "0ed76c52-822c-4fb1-89f4-01b9797b4b03",
+    "nome": "Capital de Sérvia",
+    "sigla": "C92",
+    "distrito": "Província Central",
+    "populacao": 3067797
+  },
+  {
+    "id": "5d783152-9016-4c3a-96ea-b6793fd99538",
+    "nome": "Capital de Bulgária",
+    "sigla": "C93",
+    "distrito": "Província Central",
+    "populacao": 788756
+  },
+  {
+    "id": "5a23459b-1fae-44ea-a058-39ffde6561a1",
+    "nome": "Capital de Estônia",
+    "sigla": "C94",
+    "distrito": "Província Central",
+    "populacao": 2253762
+  },
+  {
+    "id": "af2620bb-1051-4dcc-b071-9bee8113c9ef",
+    "nome": "Capital de Letônia",
+    "sigla": "C95",
+    "distrito": "Província Central",
+    "populacao": 2618209
+  },
+  {
+    "id": "fcbb76f8-3eed-4cf2-88d6-886b0eb9cd3e",
+    "nome": "Capital de Lituânia",
+    "sigla": "C96",
+    "distrito": "Província Central",
+    "populacao": 2131302
+  },
+  {
+    "id": "cfb58d2a-06d8-4a0f-80c1-cf7a916eb529",
+    "nome": "Capital de Eslovênia",
+    "sigla": "C97",
+    "distrito": "Província Central",
+    "populacao": 3445213
+  },
+  {
+    "id": "50dc0f4f-b46f-4673-a855-1362292a460a",
+    "nome": "Capital de Luxemburgo",
+    "sigla": "C98",
+    "distrito": "Província Central",
+    "populacao": 2092616
+  },
+  {
+    "id": "9786f36a-0998-4ff8-afb7-397ef0e846eb",
+    "nome": "Capital de Malta",
+    "sigla": "C99",
+    "distrito": "Província Central",
+    "populacao": 3474754
+  }
+]

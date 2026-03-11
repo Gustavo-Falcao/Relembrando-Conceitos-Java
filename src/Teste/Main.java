@@ -2,40 +2,43 @@ package Teste;
 
 import Agenda_Contatos.Contato;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class Main {
 
-    static Scanner reader = new Scanner(System.in);
-
     public static void main(String[] args) {
-        double moedaDouble = 1499;
-        //String moedaFormatada = "R$ 20,90";
+        Class <?> classe = Pessoa.class;
+        Method[] metodos = classe.getDeclaredMethods();
+        Field[] campos = classe.getDeclaredFields();
 
-        Locale localPtbr = new Locale("pt", "BR");
-        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localPtbr);
+        System.out.println("Nome classe => " + classe.getSimpleName());
 
-        BigDecimal bigDecimal = BigDecimal.valueOf(moedaDouble).setScale(2, RoundingMode.HALF_UP);
+        for(Method method : metodos) {
+            System.out.println(method.getName());
+        }
 
-        String moedaFormatada = numberFormat.format(bigDecimal).replace('\u00A0', ' ');
+        System.out.println();
+        for(Field field : campos) {
+            System.out.println("Nome campo => " + field.getName());
+            System.out.println("Nome tipo retorno => " + field.getType().getSimpleName());
+        }
 
-        String soValor = moedaFormatada.replaceAll("[^0-9//,]+", "");
-        String soValorPdouble = soValor.replace(",", ".");
+        try {
+            Method method = classe.getMethod("getNome");
 
-        System.out.println("Moeda formatada ->" + moedaFormatada);
-        System.out.println("Moeda so valor ->" + soValorPdouble);
+            Pessoa p = new Pessoa("Gustavo", "923231119", "gustavo@gmail.com");
 
-        double valorPdouble = Double.parseDouble(soValorPdouble);
+            Object result = method.invoke(p);
 
-        System.out.printf("Valor so double -> %.2f", valorPdouble);
+            String resultToString = (String) result;
+            System.out.println();
+            System.out.println(resultToString);
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
 
-        //double preco = Double.parseDouble(moedaFormatada.replace("R$", ""));
+
     }
 }

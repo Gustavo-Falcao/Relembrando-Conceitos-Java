@@ -39,7 +39,7 @@ public class ContatoController {
     }
 
     public void mostrarContatos () {
-        TabelaFormatada.tabelaFormatada(getContatos());
+        //TabelaFormatada.tabelaFormatada(getContatos());
     }
 
     public void criarContato() {
