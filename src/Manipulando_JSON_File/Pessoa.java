@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class Pessoa {
 
-    private final String id;
+    private String id;
     private String nome;
     private String telefone;
     private String email;
@@ -16,6 +16,10 @@ public class Pessoa {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+    }
+
+    public Pessoa () {
+
     }
 
     public String getId() {
