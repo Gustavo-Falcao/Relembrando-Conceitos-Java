@@ -1,11 +1,24 @@
 package Agenda_Contatos;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TabelaFormatada {
 
-    public static <T> void tabelaFormatada(List<T> listaDados) {
+    public static void tabelaFormatada(List<?> listaDados) {
+
+        Class<?> classe = listaDados.getFirst().getClass();
+
+        System.out.println("Nome da classe da list => " + classe.getSimpleName());
+
+        List<Map<String, Object>> objetosEmMap = new ArrayList<>();
+
+        for(Map<String,Object> map : objetosEmMap) {
+
+        }
 
     // Fazer uma lista de Map, onde cada Map é um objeto temporário
     // Descrobrir o nome dos atributos e guardar como chave no Map que representa um objeto

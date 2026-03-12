@@ -2,6 +2,7 @@ package Manipulando_JSON_File;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import Agenda_Contatos.TabelaFormatada;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,10 +39,8 @@ public class Main {
 //    ));
 
     public static void main(String[] args) {
-        for(Pessoa p : pessoas) {
-            System.out.println(p.getPessoaFormatado());
-            System.out.println();
-        }
+
+        TabelaFormatada.tabelaFormatada(pessoas);
 
         System.out.println("Tamanho array => " + pessoas.size());
         System.out.println("Inserindo dados no arquivo...");
