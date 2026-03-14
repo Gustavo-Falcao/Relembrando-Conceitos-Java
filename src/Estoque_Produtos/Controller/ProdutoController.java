@@ -1,5 +1,6 @@
 package Estoque_Produtos.Controller;
 
+import Agenda_Contatos.TabelaFormatada;
 import Estoque_Produtos.Dados.DataHandler;
 import Estoque_Produtos.Exceptions.BusinessException;
 import Estoque_Produtos.Exceptions.NotFoundException;
@@ -39,7 +40,8 @@ public class ProdutoController {
 
     public void listarProdutos() {
         SystemLog.info("Listagem de produtos");
-        TabelaProdutos.tabelaProdutos(produtoService.getProdutos());
+        //TabelaProdutos.tabelaProdutos(produtoService.getProdutos());
+        TabelaFormatada.tabelaFormatadaForMap(produtoService.getProdutos());
     }
 
     public void cadastrarProduto(String sku, String nome, double preco, int quantidade) {

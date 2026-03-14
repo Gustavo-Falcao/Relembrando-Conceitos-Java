@@ -75,3 +75,9 @@
 [06-03-2026 17:27:43] INFO App iniciado
 [06-03-2026 17:27:51] INFO Listagem de produtos
 [06-03-2026 17:28:41] INFO App finalizado
+[13-03-2026 20:10:18] INFO App iniciado
+[13-03-2026 20:10:22] INFO Listagem de produtos
+[13-03-2026 20:10:34] INFO App finalizado
+[13-03-2026 20:11:12] INFO App iniciado
+[13-03-2026 20:11:14] INFO Listagem de produtos
+[13-03-2026 20:11:21] INFO App finalizado

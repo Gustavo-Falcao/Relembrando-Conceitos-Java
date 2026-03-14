@@ -1,117 +1,136 @@
 package Agenda_Contatos;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
 
 public class TabelaFormatada {
 
-    public static void tabelaFormatada(List<?> listaDados) {
+    public static void tabelaFormatadaForList(List<?> listaDados) {
 
         Class<?> classe = listaDados.getFirst().getClass();
 
         System.out.println("Nome da classe da list => " + classe.getSimpleName());
 
         List<Map<String, Object>> objetosEmMap = new ArrayList<>();
+        Map<String, Integer> defaultWidthCampos = new HashMap<>();
+        List<String> nomeCampos = new ArrayList<>();
+        Map<String,String> nomeMetodosGet = new HashMap<>();
 
-        for(Map<String,Object> map : objetosEmMap) {
+        Field[] fields = classe.getDeclaredFields();
 
+        //Adicionando campos da classe no array dos campos
+        for(Field field : fields) {
+            String nomeCampo = field.getName();
+            String nomeCampoTitulo = nomeCampo.substring(0,1).toUpperCase() + nomeCampo.substring(1);
+            nomeCampos.add(nomeCampoTitulo);
+            nomeMetodosGet.put(nomeCampoTitulo, "get"+nomeCampoTitulo);
         }
 
-    // Fazer uma lista de Map, onde cada Map é um objeto temporário
-    // Descrobrir o nome dos atributos e guardar como chave no Map que representa um objeto
-    // Para cada chave guardar os valores correspondentes
-//
-//        int lengthId = contatos.getFirst().getId().length();
-//
-//        System.out.println("Maior length de id => " + lengthId);
-//
-//        int maiorLengthNome = 0;
-//        int maiorLenghTelefone = 0;
-//        int maiorLenghtEmail = 0;
-//
-//        for(Contato c : contatos) {
-//            if(maiorLengthNome < c.getNome().length()) maiorLengthNome = c.getNome().length();
-//
-//            if(maiorLenghTelefone < c.getTelefone().length()) maiorLenghTelefone = c.getTelefone().length();
-//
-//            if(maiorLenghtEmail < c.getEmail().length()) maiorLenghtEmail = c.getEmail().length();
-//        }
-//
-//        int widthPadraoId = lengthId + 4;
-//        int widthPadraoNome = maiorLengthNome + 4;
-//        int widthPadraoTelefone = maiorLenghTelefone + 4;
-//        int widthPadraoEmail = maiorLenghtEmail + 4;
-//
-//        //Saber o width total do campo
-//        //Subtrair pelo comprimento da string Id_Contato
-//        //Dividir o valor subtraido por 2
-//        //O resultado será os dois padding de cada lado do valor
-//
-//        String tituloId = "Id_Contato";
-//        String tituloNome = "Nome";
-//        String tituloTelefone = "Telefone";
-//        String tituloEmail = "Email";
-//
-//
-//        String linhaTitulo = "|" + campoFormatoComPaddin(widthPadraoId, tituloId) + "|" + campoFormatoComPaddin(widthPadraoNome, tituloNome) + "|" + campoFormatoComPaddin(widthPadraoTelefone, tituloTelefone) + "|" + campoFormatoComPaddin(widthPadraoEmail, tituloEmail) + "|";
-//
-//
-//        String titulo = "CONTATOS CADASTRADOS";
-//        int tamanhoMarginTitulo = linhaTitulo.length() - titulo.length();
-//        int paddingTitulo = 4;
-//        int marginLados = tamanhoMarginTitulo/2;
-//        int bordasLateraisTitulo = 2;
-//
-//        String tituloTabela =  " ".repeat(marginLados - (paddingTitulo*2)) + "|" + " ".repeat(4) + titulo + " ".repeat(4) + "|" + " ".repeat(marginLados - (paddingTitulo*2));
-//        System.out.println("Tamanho completo length titulo -> " + (titulo.length() + paddingTitulo*2) );
-//        String borderTitulo = " ".repeat(marginLados - (paddingTitulo*2)) + "+ " + "-".repeat((titulo.length() + (paddingTitulo*2) + bordasLateraisTitulo) - 4) + " +";
-//        String lengthTitulo = "+ " + "-".repeat((titulo.length() + (paddingTitulo*2)) - 4) + " +";
-//        System.out.println("Tamanho completo borda titulo -> " + lengthTitulo.length());
-//
-//        String border = "+ " + "-".repeat(linhaTitulo.length()-4) + " +";
-//
-//        String borderBottom = "-".repeat(linhaTitulo.length());
-//
-//        String linhaVazia = "|" + " ".repeat(widthPadraoId) + "|" + " ".repeat(widthPadraoNome) + "|" + " ".repeat(widthPadraoTelefone) + "|" + " ".repeat(widthPadraoEmail) + "|";
-//
-//        System.out.println("\n\n\n");
-//        System.out.println(borderTitulo);
-//        System.out.println(tituloTabela);
-//        System.out.println(border);
-//        System.out.println(linhaTitulo);
-//
-//
-//        for(Contato c : contatos) {
-//            System.out.println(borderBottom);
-//            System.out.println(linhaVazia);
-//            System.out.println(formatarCampoUsuario(widthPadraoId, widthPadraoNome, widthPadraoTelefone, widthPadraoEmail, c));
-//            System.out.println(linhaVazia);
-//        }
-//        System.out.println(border);
+        int padding = 4;
+        //Inicializando variaveis para receber os valores default de comprimento para cada campo
+        for(String nomeCampo : nomeCampos) {
+            defaultWidthCampos.put("widthDefault" + nomeCampo, nomeCampo.length() + padding);
+        }
+
+        //Descobrindo os tamanhos default para cada campo
+        for(Object dado : listaDados) {
+            Map<String,Object> objetoDado = new LinkedHashMap<>();
+            for(String nomeCampo : nomeCampos) {
+                //Mostrar nome dos campos de cada objeto
+                try {
+                    Method method = classe.getMethod(nomeMetodosGet.get(nomeCampo));//pegando nome do metodo de acordo com o nome do campo
+                    Object result = method.invoke(dado);//chamando o metodo para o objeto
+
+                    objetoDado.put(nomeCampo, result);
+
+                    String resultToString = (String) result;//convertendo o resultado para string
+
+                    String chaveValoresDefaultWidth = "widthDefault" + nomeCampo;
+                    //Adicionando o maior valor entre o valor que esta presente na variavel de comprimento padrao
+                    //que corresponde ao campo do nomeCampo e o comprimento da string do proximo valor do mesmo campo
+                    defaultWidthCampos.put(chaveValoresDefaultWidth, Math.max(defaultWidthCampos.get(chaveValoresDefaultWidth), resultToString.length()));
+
+                } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+            objetosEmMap.add(objetoDado);
+        }
+
+        System.out.println();
+        System.out.println("Mostrando valores width padrao cada campo");
+        for(Map.Entry<String,Integer> entry : defaultWidthCampos.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+        }
+
+        for(Map.Entry<String,Integer> entry : defaultWidthCampos.entrySet()) {
+            int valor = entry.getValue() + 4;
+            entry.setValue(valor);
+        }
+
+        System.out.println("\nMostrando valores width padrao cada campo com a adicao de padding");
+
+        for(Map.Entry<String,Integer> entry : defaultWidthCampos.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+        }
+
+        StringBuilder linhaTitulo = new StringBuilder("|");
+
+        for(String nomeTitulo : nomeCampos) {
+            linhaTitulo.append(campoFormatoComPaddin(defaultWidthCampos.get("widthDefault"+nomeTitulo), nomeTitulo) + "|");
+        }
+
+        String borda = "+ " + "-".repeat(linhaTitulo.length()-4) + " +";
+        String linhaSeparatoria = "|" + "-".repeat(linhaTitulo.length()-2) + "|";
+        StringBuilder linhaVazia = new StringBuilder("|");
+
+        for(String nomeCampo : nomeCampos) {
+            String espaco = " ";
+            linhaVazia.append(espaco.repeat(defaultWidthCampos.get("widthDefault"+nomeCampo)) + "|");
+        }
+
+        System.out.println("Titulo dashboard abaixo com borda");
+        System.out.println(borda);
+        System.out.println(linhaTitulo);
+        System.out.println(borda);
+
+        for(Map<String,Object> map : objetosEmMap) {
+            StringBuilder linhaDado = new StringBuilder("|");
+
+            for(Map.Entry<String,Object> entry : map.entrySet()) {
+                String valueToString = entry.getValue().toString();
+                linhaDado.append(campoFormatoComPaddin(defaultWidthCampos.get("widthDefault"+entry.getKey()), valueToString) + "|");
+            }
+            System.out.println(linhaVazia);
+            System.out.println(linhaDado);
+            System.out.println(linhaVazia);
+            if(objetosEmMap.indexOf(map) == objetosEmMap.size()-1) {
+                System.out.println(borda);
+            } else {
+                System.out.println(linhaSeparatoria);
+            }
+        }
     }
 
-//    private static String campoFormatoComPaddin(int widthPadraoCampo, String campo) {
-//
-//        //System.out.println("\n\nWidth padrao campo ->" + widthPadraoCampo);
-//        //System.out.println("Lengh para " + campo + campo.length());
-//
-//        int valorPadding = widthPadraoCampo - campo.length();
-//        //System.out.println("Valor padding -> " + valorPadding);
-//        int paddingRight = valorPadding - 1;
-//        //System.out.println("Padding cada lado -> " + paddingCadaLado);
-//        String padding = " ";
-//        return padding + campo + padding.repeat(paddingRight);
-//    }
-//
-//    private static String formatarCampoUsuario(int widthPadraoId, int widthPadraoNome, int widthPadraoTelefone, int widthPadraoEmail, Contato contato) {
-//        return   "|" + campoFormatoComPaddin(widthPadraoId, contato.getId())
-//                + "|" + campoFormatoComPaddin(widthPadraoNome, contato.getNome())
-//                + "|" + campoFormatoComPaddin(widthPadraoTelefone, contato.getTelefone())
-//                + "|" + campoFormatoComPaddin(widthPadraoEmail, contato.getEmail())
-//                + "|";
-//
-//    }
+    public static void tabelaFormatadaForMap(Map<?,?> mapDados) {
+        Map.Entry<?, ?> primeiraEntrada = mapDados.entrySet().iterator().next();
+
+        Class<?> classeKey = primeiraEntrada.getKey().getClass();
+        Class<?> classeValue = primeiraEntrada.getValue().getClass();
+
+        System.out.println("Classe key => " + classeKey.getSimpleName() + " | Classe value => " + classeValue.getSimpleName());
+
+        //Class<?> classeKey = mapDados.ge
+    }
+
+    private static String campoFormatoComPaddin(int widthPadraoCampo, String campo) {
+
+        int valorPadding = widthPadraoCampo - campo.length();
+        int paddingRight = valorPadding - 1;
+        String padding = " ";
+        return padding + campo + padding.repeat(paddingRight);
+    }
+
 }
