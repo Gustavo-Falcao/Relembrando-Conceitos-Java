@@ -20,10 +20,10 @@ public class DataHandler {
         try {
             FileWriter fileWriter = new FileWriter(filePath, StandardCharsets.UTF_8);
 
-            fileWriter.write("SKU;Nome;Preco;QuantEstoque\n");
+            fileWriter.write("SKU;Nome;Preco;QuantEstoque;Categoria\n");
 
             for(Produto produto : produtos.values()) {
-                fileWriter.write(produto.getSku() + ";" + produto.getNome() + ";" + CurrencyFormatter.currencyFormatter(produto.getPreco()) + ";" + produto.getQuantidade() + "\n");
+                fileWriter.write(produto.getSku() + ";" + produto.getNome() + ";" + CurrencyFormatter.currencyFormatter(produto.getPreco()) + ";" + produto.getQuantidade() + ";" + produto.getCategoria() + "\n");
             }
 
             fileWriter.close();
@@ -54,8 +54,9 @@ public class DataHandler {
                 String precoPdouble = precoSoValor.replace(",", ".");
                 double preco = Double.parseDouble(precoPdouble);
                 int quantidade = Integer.parseInt(atributos[3]);
+                String categoria = atributos[4];
 
-                produtoMap.put(sku, new Produto(sku, nome, preco, quantidade));
+                produtoMap.put(sku, new Produto(sku, nome, preco, quantidade, categoria));
             }
 
             scanner.close();
