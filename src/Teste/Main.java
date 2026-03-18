@@ -6,40 +6,28 @@ import Agenda_Contatos.TabelaFormatada;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
     public static void main(String[] args) {
-        Class <?> classe = Pessoa.class;
-        Method[] metodos = classe.getDeclaredMethods();
-        Field[] campos = classe.getDeclaredFields();
 
-        System.out.println("Nome classe => " + classe.getSimpleName());
+        System.out.println(contarDigitosUnicos(12345)); // 5
+        System.out.println(contarDigitosUnicos(11111)); // 1
+        System.out.println(contarDigitosUnicos(987789)); // 4
 
-        for(Method method : metodos) {
-            System.out.println(method.getName());
+
+    }
+    public static int contarDigitosUnicos(int num) {
+        // Seu código aqui
+        String numeroToString = String.valueOf(num);
+        Set<Character> numerosUnicos = new HashSet<>();
+
+        for(int i = 0; i < numeroToString.length(); i++) {
+            numerosUnicos.add(numeroToString.charAt(i));
         }
-
-        System.out.println();
-        for(Field field : campos) {
-            System.out.println("Nome campo => " + field.getName());
-            System.out.println("Nome tipo retorno => " + field.getType().getSimpleName());
-        }
-
-        try {
-            Method method = classe.getMethod("getNome");
-
-            Pessoa p = new Pessoa("Gustavo", "923231119", "gustavo@gmail.com");
-
-            Object result = method.invoke(p);
-
-            String resultToString = (String) result;
-            System.out.println();
-            System.out.println(resultToString);
-        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
-
+        // Dica: converta o número para String e use um Set para contar dígitos únicos
+        return numerosUnicos.size();
     }
 }
