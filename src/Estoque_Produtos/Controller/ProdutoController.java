@@ -32,6 +32,9 @@ public class ProdutoController {
         } catch (BusinessException e) {
             LogUser.logAtencao(e.getMessage());
             SystemLog.warn(e.getMessage());
+        } catch (IllegalArgumentException e) {
+           LogUser.logAtencao("Valor para categoria não é válido!!");
+           SystemLog.warn("Valor informado para categoria inválido");
         } catch (RuntimeException e) {
             LogUser.logErro("Erro inesperado!!");
             SystemLog.error(e.getMessage());
@@ -44,9 +47,9 @@ public class ProdutoController {
         TabelaFormatada.tabelaFormatadaForMap(produtoService.getProdutos());
     }
 
-    public void cadastrarProduto(String sku, String nome, double preco, int quantidade) {
+    public void cadastrarProduto(String sku, String nome, double preco, int quantidade, String categoria) {
         executarAcaoSemRetornoTratandoExcecao(() -> {
-            produtoService.cadastrarProduto(new Produto(sku, nome, preco, quantidade));
+            produtoService.cadastrarProduto(new Produto(sku, nome, preco, quantidade, categoria));
             LogUser.logSucesso("Produto cadastrado com sucesso!!");
             SystemLog.info("Produto cadastrado com sucesso | sku=" + sku + " nome=" + nome + " preco=" + CurrencyFormatter.currencyFormatter(preco) + " quantInicial=" + quantidade);
         });

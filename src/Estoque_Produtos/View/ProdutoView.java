@@ -16,8 +16,25 @@ public class ProdutoView {
         String nome = InputHelper.readValidName("Informe o nome do produto: ");
         double preco = InputHelper.readDouble("Informe o preco do produto: ");
         int quantidade = InputHelper.readInt("Informe a quantidade inicial de estoque: ");
+        System.out.println("\n##Categorias");
+        System.out.println(" [1] - Eletronico");
+        System.out.println(" [2] - Alimento");
+        System.out.println(" [3] - Esporte");
+        System.out.println(" [4] - Roupa");
+        System.out.println(" [5] - Livro");
+        System.out.println("---------------------");
+        int categoria = InputHelper.readInt("Escolha uma categoria para o produto: ");
 
-        produtoController.cadastrarProduto(sku, nome, preco, quantidade);
+        String categoriaString = switch (categoria) {
+            case 1 -> "ELETRONICO";
+            case 2 -> "ALIMENTO";
+            case 3 -> "ESPORTE";
+            case 4 -> "ROUPA";
+            case 5 -> "LIVRO";
+            default -> "ERRO";
+        };
+
+        produtoController.cadastrarProduto(sku, nome, preco, quantidade, categoriaString);
     }
 
     public static void mostrarProdutos() {

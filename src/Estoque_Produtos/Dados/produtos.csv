@@ -1,13 +1,13 @@
-SKU;Nome;Preco;QuantEstoque
-FONE-BT-01;Fone Bluetooth Esportivo;R$ 159,90;0
-A1;Água Mineral 500ml;R$ 3,50;0
-REL-SPORT-02;Relógio Esportivo GPS;R$ 1.499,00;15
-KIT-RECUP-01;Kit Recuperação (Rolo + Bola + Mini Band);R$ 189,90;7
-CAMISA-DRY-01;Camiseta Dry-Fit Branca;R$ 69,90;120
-B12;Banana (kg);R$ 6,90;3
-CORD-PULAR-02;Corda de Pular Ajustável;R$ 29,90;4
-MEIA-SPORT-38;Meia Esportiva (38–42);R$ 19,90;1
-SQUEEZE-750;Squeeze 750ml;R$ 24,50;200
-LIVRO-JAVA-01;Livro: Java para Devs (Edição 2024);R$ 119,90;5
-GEL-ENER-30G;Gel Energético 30g;R$ 9,99;2
-TENIS-001;Tênis Corrida Básico;R$ 299,90;8
+SKU;Nome;Preco;QuantEstoque;Categoria
+FONE-BT-01;Fone Bluetooth Esportivo;R$ 159,90;0;ELETRONICO
+A1;Água Mineral 500ml;R$ 3,50;0;ALIMENTO
+REL-SPORT-02;Relógio Esportivo GPS;R$ 1.499,00;15;ELETRONICO
+KIT-RECUP-01;Kit Recuperação (Rolo + Bola + Mini Band);R$ 189,90;7;ESPORTE
+B12;Banana (kg);R$ 6,90;3;ALIMENTO
+CAMISA-DRY-01;Camiseta Dry-Fit Branca;R$ 69,90;120;ROUPA
+MEIA-SPORT-38;Meia Esportiva (38–42);R$ 19,90;1;ROUPA
+SQUEEZE-750;Squeeze 750ml;R$ 24,50;200;ESPORTE
+CORD-PULAR-02;Corda de Pular Ajustável;R$ 29,90;4;ESPORTE
+LIVRO-JAVA-01;Livro: Java para Devs (Edição 2024);R$ 119,90;5;LIVRO
+GEL-ENER-30G;Gel Energético 30g;R$ 9,99;2;ALIMENTO
+TENIS-001;Tênis Corrida Básico;R$ 299,90;8;ROUPA
