@@ -52,6 +52,7 @@ public class Main {
             System.out.println(" [16] - Ordenar produtos pelo estoque decrescente");
             System.out.println(" [17] - Listar produtos que estão ativos e tem estoque maior que 0");
             System.out.println(" [18] - Listar produtos da categoria Periféricos que custam mais de 200");
+            System.out.println(" [24] - Listar produtos que não são da categoria Acessórios");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
@@ -109,6 +110,7 @@ public class Main {
                case 16 -> OrdenarProdutosPorEstoqueDecrescente();
                case 17 -> ListarProdutosAtivosComEstoqueIgualZero();
                case 18 -> ListarProdutosDePerifericosComPrecoMaiorQueDuzentos();
+               case 24 -> ListarProdutosQueNaoSaoAcessorios();
                case 0 -> System.out.println("Saindo...");
                default -> System.out.println("Opcao invalida");
            }
@@ -296,6 +298,16 @@ public class Main {
         System.out.println();
         System.out.println("<< Produtos periféricos com preco maior que duzentos >>");
         TabelaFormatada.tabelaFormatadaForList(produtosPerifericosComPrecoMaiorQueDuzentos);
+    }
+
+    public static void ListarProdutosQueNaoSaoAcessorios() {
+        List<Produto> produtosQueNaoSaoAcessorios = produtos.stream()
+                .filter(produto -> !produto.getCategoria().equals("Acessórios"))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos que não são acessorios >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosQueNaoSaoAcessorios);
     }
 
 }
