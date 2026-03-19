@@ -50,12 +50,14 @@ public class Main {
             System.out.println(" [14] - Ordenar produtos pelo tamanho do nome crescente");
             System.out.println(" [15] - Ordenar produtos pelo id crescente");
             System.out.println(" [16] - Ordenar produtos pelo estoque decrescente");
+            System.out.println(" [17] - Listar produtos que estão ativos e tem estoque maior que 0");
+            System.out.println(" [18] - Listar produtos da categoria Periféricos que custam mais de 200");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
 
             //Exercicios
-            // Retorne uma lista com os produtos que estão ativos e têm estoque maior que zero.
+            // Retorne uma lista com os produtos que estão ativos e têm estoque maior que zero. - done
             //Retorne uma lista com os produtos da categoria "Periféricos" que custam mais de 200.
             // Retorne uma lista com os produtos inativos ou com estoque igual a zero.
             //Retorne uma lista com os produtos cujo nome contém a palavra "Monitor".
@@ -105,6 +107,8 @@ public class Main {
                case 14 -> OrdenarProdutosPorLengthNomeCrescente();
                case 15 -> OrdenarProdutosPorIdCrescente();
                case 16 -> OrdenarProdutosPorEstoqueDecrescente();
+               case 17 -> ListarProdutosAtivosComEstoqueIgualZero();
+               case 18 -> ListarProdutosDePerifericosComPrecoMaiorQueDuzentos();
                case 0 -> System.out.println("Saindo...");
                default -> System.out.println("Opcao invalida");
            }
@@ -272,6 +276,26 @@ public class Main {
         System.out.println();
         System.out.println("<< Produtos ordenados por estoque ordem decrescente >>");
         TabelaFormatada.tabelaFormatadaForList(produtosOrdenadosPorEstoqueDecrescente);
+    }
+
+    public static void ListarProdutosAtivosComEstoqueIgualZero() {
+        List<Produto> produtosAtivosComEstoqueMaiorQueZero = produtos.stream()
+                .filter(produto -> produto.getAtivo() == true && produto.getEstoque() == 0)
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ativos com estoque menor que zero >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosAtivosComEstoqueMaiorQueZero);
+    }
+
+    public static void ListarProdutosDePerifericosComPrecoMaiorQueDuzentos() {
+        List<Produto> produtosPerifericosComPrecoMaiorQueDuzentos = produtos.stream()
+                .filter(produto -> produto.getCategoria().equals("Periféricos") && produto.getPreco() > 200)
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos periféricos com preco maior que duzentos >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosPerifericosComPrecoMaiorQueDuzentos);
     }
 
 }
