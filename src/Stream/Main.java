@@ -53,6 +53,7 @@ public class Main {
             System.out.println(" [19] - Listar produtos que estão inativos ou com estoque igual a 0");
             System.out.println(" [20] - Listar produtos que tem Monitor no nome");
             System.out.println(" [21] - Listar produtos cujo nome começa com M e que estão ativos");
+            System.out.println(" [24] - Listar produtos que não são da categoria Acessórios");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
@@ -113,11 +114,11 @@ public class Main {
                case 19 -> ListarProdutosInativosOuComEstoqueIgualZero();
                case 20 -> ListarProdutosQueTenhaMonitorNoNome();
                case 21 -> ListarProdutosQueNomeComecaComMeEstaAtivo();
+               case 24 -> ListarProdutosQueNaoSaoAcessorios();
                case 0 -> System.out.println("Saindo...");
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
-
 
     }
 
@@ -301,7 +302,7 @@ public class Main {
         System.out.println("<< Produtos periféricos com preco maior que duzentos >>");
         TabelaFormatada.tabelaFormatadaForList(produtosPerifericosComPrecoMaiorQueDuzentos);
     }
-
+  
     public static void ListarProdutosInativosOuComEstoqueIgualZero() {
         List<Produto> produtosInativosOuComEstoqueIgualZero = produtos.stream()
                 .filter(produto -> !produto.getAtivo() || produto.getEstoque() == 0)
@@ -330,6 +331,16 @@ public class Main {
         System.out.println();
         System.out.println("<< Produtos cujo nome começa com a letra M e está ativo >>");
         TabelaFormatada.tabelaFormatadaForList(produtosQueComecamComMeAtivo);
+    }
+  
+      public static void ListarProdutosQueNaoSaoAcessorios() {
+        List<Produto> produtosQueNaoSaoAcessorios = produtos.stream()
+                .filter(produto -> !produto.getCategoria().equals("Acessórios"))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos que não são acessorios >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosQueNaoSaoAcessorios);
     }
 
 }
