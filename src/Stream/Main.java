@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 import Agenda_Contatos.TabelaFormatada;
 
-import javax.swing.table.TableCellEditor;
-
 public class Main {
 
     private static List<Produto> produtos = List.of(
             new Produto(6,"Mouse Gamer", "Periféricos", 150.0, 10, true),
             new Produto(7,"Teclado Mecânico", "Periféricos", 320.0, 5, true),
-            new Produto(3,"Monitor 24", "Monitores", 900.0, 3, true),
+            new Produto(3,"Monitor 24", "Monitores", 900.0, 3, false),
             new Produto(8,"Monitor 27", "Monitores", 1200.0, 0, true),
             new Produto(11,"Notebook i5", "Informática", 3500.0, 2, true),
             new Produto(1,"Notebook i7", "Informática", 5000.0, 1, false),
@@ -22,7 +20,7 @@ public class Main {
             new Produto(10,"Webcam HD", "Periféricos", 250.0, 7, true),
             new Produto(15,"Suporte Notebook", "Acessórios", 120.0, 15, true),
             new Produto(13,"Hub USB", "Acessórios", 90.0, 20, true),
-            new Produto(14,"Mouse Gamer", "Periféricos", 150.0, 12, true),
+            new Produto(14,"Mouse Gamer", "Periféricos", 150.0, 12, false),
             new Produto(12,"Luminária LED", "Acessórios", 180.0, 0, true)
     );
 
@@ -52,6 +50,9 @@ public class Main {
             System.out.println(" [16] - Ordenar produtos pelo estoque decrescente");
             System.out.println(" [17] - Listar produtos que estão ativos e tem estoque maior que 0");
             System.out.println(" [18] - Listar produtos da categoria Periféricos que custam mais de 200");
+            System.out.println(" [19] - Listar produtos que estão inativos ou com estoque igual a 0");
+            System.out.println(" [20] - Listar produtos que tem Monitor no nome");
+            System.out.println(" [21] - Listar produtos cujo nome começa com M e que estão ativos");
             System.out.println(" [24] - Listar produtos que não são da categoria Acessórios");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
@@ -59,10 +60,10 @@ public class Main {
 
             //Exercicios
             // Retorne uma lista com os produtos que estão ativos e têm estoque maior que zero. - done
-            //Retorne uma lista com os produtos da categoria "Periféricos" que custam mais de 200.
-            // Retorne uma lista com os produtos inativos ou com estoque igual a zero.
-            //Retorne uma lista com os produtos cujo nome contém a palavra "Monitor".
-            //Retorne uma lista com os produtos cujo nome começa com "M" e que estão ativos.
+            //Retorne uma lista com os produtos da categoria "Periféricos" que custam mais de 200. - done
+            // Retorne uma lista com os produtos inativos ou com estoque igual a zero. - done
+            //Retorne uma lista com os produtos cujo nome contém a palavra "Monitor". - done
+            //Retorne uma lista com os produtos cujo nome começa com "M" e que estão ativos. - done
             //Retorne uma lista com os produtos que não pertencem à categoria "Acessórios".
             //Retorne uma lista com os produtos ativos cujo preço está entre 200 e 1000.
             //Retorne uma lista com os produtos que têm estoque menor que 5 e estão ativos.
@@ -110,12 +111,14 @@ public class Main {
                case 16 -> OrdenarProdutosPorEstoqueDecrescente();
                case 17 -> ListarProdutosAtivosComEstoqueIgualZero();
                case 18 -> ListarProdutosDePerifericosComPrecoMaiorQueDuzentos();
+               case 19 -> ListarProdutosInativosOuComEstoqueIgualZero();
+               case 20 -> ListarProdutosQueTenhaMonitorNoNome();
+               case 21 -> ListarProdutosQueNomeComecaComMeEstaAtivo();
                case 24 -> ListarProdutosQueNaoSaoAcessorios();
                case 0 -> System.out.println("Saindo...");
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
-
 
     }
 
@@ -299,8 +302,38 @@ public class Main {
         System.out.println("<< Produtos periféricos com preco maior que duzentos >>");
         TabelaFormatada.tabelaFormatadaForList(produtosPerifericosComPrecoMaiorQueDuzentos);
     }
+  
+    public static void ListarProdutosInativosOuComEstoqueIgualZero() {
+        List<Produto> produtosInativosOuComEstoqueIgualZero = produtos.stream()
+                .filter(produto -> !produto.getAtivo() || produto.getEstoque() == 0)
+                .toList();
 
-    public static void ListarProdutosQueNaoSaoAcessorios() {
+        System.out.println();
+        System.out.println("<< Produtos Inativos ou com estoque igual a zero >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosInativosOuComEstoqueIgualZero);
+    }
+
+    public static void ListarProdutosQueTenhaMonitorNoNome() {
+        List<Produto> produtosQueTemMonitorNoNome = produtos.stream()
+                .filter(produto -> produto.getNome().contains("Monitor"))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos que tem Monitor no nome >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosQueTemMonitorNoNome);
+    }
+
+    public static void ListarProdutosQueNomeComecaComMeEstaAtivo() {
+        List<Produto> produtosQueComecamComMeAtivo = produtos.stream()
+                .filter(produto -> produto.getNome().charAt(0) == 'M' && produto.getAtivo())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos cujo nome começa com a letra M e está ativo >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosQueComecamComMeAtivo);
+    }
+  
+      public static void ListarProdutosQueNaoSaoAcessorios() {
         List<Produto> produtosQueNaoSaoAcessorios = produtos.stream()
                 .filter(produto -> !produto.getCategoria().equals("Acessórios"))
                 .toList();
