@@ -53,6 +53,7 @@ public class Main {
             System.out.println(" [19] - Listar produtos que estão inativos ou com estoque igual a 0");
             System.out.println(" [20] - Listar produtos que tem Monitor no nome");
             System.out.println(" [21] - Listar produtos cujo nome começa com M e que estão ativos");
+            System.out.println(" [22] - Listar produtos que estão ativos e o preço está entre 200 e 1000");
             System.out.println(" [24] - Listar produtos que não são da categoria Acessórios");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
@@ -64,7 +65,7 @@ public class Main {
             // Retorne uma lista com os produtos inativos ou com estoque igual a zero. - done
             //Retorne uma lista com os produtos cujo nome contém a palavra "Monitor". - done
             //Retorne uma lista com os produtos cujo nome começa com "M" e que estão ativos. - done
-            //Retorne uma lista com os produtos que não pertencem à categoria "Acessórios".
+            //Retorne uma lista com os produtos que não pertencem à categoria "Acessórios". - done
             //Retorne uma lista com os produtos ativos cujo preço está entre 200 e 1000.
             //Retorne uma lista com os produtos que têm estoque menor que 5 e estão ativos.
             //Crie uma List<String> contendo apenas os nomes dos produtos.
@@ -114,6 +115,7 @@ public class Main {
                case 19 -> ListarProdutosInativosOuComEstoqueIgualZero();
                case 20 -> ListarProdutosQueTenhaMonitorNoNome();
                case 21 -> ListarProdutosQueNomeComecaComMeEstaAtivo();
+               case 22 -> ListarProdutosAtivosComPrecoEntre200And1000();
                case 24 -> ListarProdutosQueNaoSaoAcessorios();
                case 0 -> System.out.println("Saindo...");
                default -> System.out.println("Opcao invalida");
@@ -333,7 +335,7 @@ public class Main {
         TabelaFormatada.tabelaFormatadaForList(produtosQueComecamComMeAtivo);
     }
   
-      public static void ListarProdutosQueNaoSaoAcessorios() {
+    public static void ListarProdutosQueNaoSaoAcessorios() {
         List<Produto> produtosQueNaoSaoAcessorios = produtos.stream()
                 .filter(produto -> !produto.getCategoria().equals("Acessórios"))
                 .toList();
@@ -342,5 +344,16 @@ public class Main {
         System.out.println("<< Produtos que não são acessorios >>");
         TabelaFormatada.tabelaFormatadaForList(produtosQueNaoSaoAcessorios);
     }
+
+    public static void ListarProdutosAtivosComPrecoEntre200And1000() {
+        List<Produto> produtosAtivosComPrecoEntre200And1000 = produtos.stream()
+                .filter(produto -> produto.getAtivo() && produto.getPreco() >= 200 && produto.getPreco() <= 1000)
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ativos com preco entre 200 e 1000 >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosAtivosComPrecoEntre200And1000);
+    }
+
 
 }
