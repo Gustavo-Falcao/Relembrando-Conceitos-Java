@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import Agenda_Contatos.TabelaFormatada;
+import Estoque_Produtos.Service.ProdutoService;
+
+import javax.swing.plaf.ProgressBarUI;
 
 public class Main {
 
@@ -48,13 +51,27 @@ public class Main {
             System.out.println(" [14] - Ordenar produtos pelo tamanho do nome crescente");
             System.out.println(" [15] - Ordenar produtos pelo id crescente");
             System.out.println(" [16] - Ordenar produtos pelo estoque decrescente");
-            System.out.println(" [17] - Listar produtos que estão ativos e tem estoque maior que 0");
-            System.out.println(" [18] - Listar produtos da categoria Periféricos que custam mais de 200");
-            System.out.println(" [19] - Listar produtos que estão inativos ou com estoque igual a 0");
-            System.out.println(" [20] - Listar produtos que tem Monitor no nome");
-            System.out.println(" [21] - Listar produtos cujo nome começa com M e que estão ativos");
-            System.out.println(" [22] - Listar produtos que estão ativos e o preço está entre 200 e 1000");
-            System.out.println(" [24] - Listar produtos que não são da categoria Acessórios");
+            System.out.println(" [17] - Ordenar produtos pelo estoque crescente");
+            System.out.println(" [18] - Ordenar produtos pela categoria em ordem alfabetica");
+            System.out.println(" [19] - Ordenar produtos pela categoria em ordem alfabetica reversa");
+            System.out.println(" [20] - Ordenar produtos pela categoria em ordem alfabetica se categoria for igual, ordenar pelo nome");
+            System.out.println(" [21] - Ordenar produtos pela categoria em ordem alfabetica reversa se categoria for igual, ordenar pelo nome em ordem normal");
+            System.out.println(" [22] - Listar produtos que estão ativos e tem estoque maior que 0");
+            System.out.println(" [23] - Listar produtos da categoria Periféricos que custam mais de 200");
+            System.out.println(" [24] - Listar produtos que estão inativos ou com estoque igual a 0");
+            System.out.println(" [25] - Listar produtos que tem Monitor no nome");
+            System.out.println(" [26] - Listar produtos cujo nome começa com M e que estão ativos");
+            System.out.println(" [27] - Listar produtos que estão ativos e o preço está entre 200 e 1000");
+            System.out.println(" [28] - Listar produtos que tem estoque menor que 5 e estão ativos");
+            System.out.println(" [29] - Listar produtos que não são da categoria Acessórios");
+            System.out.println(" [30] - Listar tamanho dos nomes dos produtos");
+            System.out.println(" [31] - Listar nome e categoria do produto");
+            System.out.println(" [32] - Listar nome e preço do produto");
+            System.out.println(" [33] - Listar nome dos produtos ativos");
+            System.out.println(" [34] - Listar nome dos produtos da categoria Monitores");
+            System.out.println(" [35] - Listar nome dos produtos ativos e com estoque maior que zero em maiúsculo");
+            System.out.println(" [36] - Listar categorias dos produtos que tem preço menor que 200");
+            System.out.println(" [37] - Listar nome e categoria do produto em maiusculo para produtos ativos");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
@@ -66,30 +83,24 @@ public class Main {
             //Retorne uma lista com os produtos cujo nome contém a palavra "Monitor". - done
             //Retorne uma lista com os produtos cujo nome começa com "M" e que estão ativos. - done
             //Retorne uma lista com os produtos que não pertencem à categoria "Acessórios". - done
-            //Retorne uma lista com os produtos ativos cujo preço está entre 200 e 1000.
-            //Retorne uma lista com os produtos que têm estoque menor que 5 e estão ativos.
-            //Crie uma List<String> contendo apenas os nomes dos produtos.
-            //Crie uma List<String> com os nomes dos produtos em maiúsculo.
-            //Crie uma List<Integer> com o tamanho de cada nome de produto.
-            //Crie uma List<String> no formato:  "Mouse Gamer - Periféricos" - para cada produtos
-            //Crie uma List<String> no formato: "Produto: Mouse Gamer | Preço: 150.0" - para cada produto
-            //Crie uma List<String> contendo apenas as categorias, em maiúsculo.
-            //Crie uma List<Boolean> indicando se cada produto tem estoque maior que zero.
-            //Crie uma List<String> com os nomes dos produtos ativos.
-            //Retorne uma List<String> com os nomes dos produtos da categoria "Monitores".
-            //Retorne uma List<String> com os nomes dos produtos ativos e com estoque maior que zero, em maiúsculo.
-            //Retorne uma List<String> com os nomes dos produtos inativos.
-            //Retorne uma List<String> com as categorias dos produtos que têm preço menor que 200.
-            //Retorne uma List<String> no formato: "NOTEBOOK I5 - INFORMÁTICA" - para produtos ativos
-            //Retorne uma List<String> com os nomes dos produtos cujo estoque é zero, todos em minúsculo.
-            //Ordene os produtos pelo nome em ordem alfabética.
-            //Ordene os produtos pelo preço em ordem crescente.
-            //Ordene os produtos pelo preço em ordem decrescente.
-            //Ordene os produtos pelo estoque em ordem crescente.
-            //Ordene os produtos pela categoria em ordem alfabética.
-            //Ordene os produtos pela categoria em ordem alfabética reversa.
-            //Ordene os produtos primeiro pela categoria e, se a categoria for igual, pelo nome.
-            //Ordene os produtos primeiro pela categoria em ordem reversa e, se a categoria for igual, pelo nome em ordem normal.
+            //Retorne uma lista com os produtos ativos cujo preço está entre 200 e 1000. - done
+            //Retorne uma lista com os produtos que têm estoque menor que 5 e estão ativos. - done
+            //Crie uma List<Integer> com o tamanho de cada nome de produto. - done
+            //Crie uma List<String> no formato: "Mouse Gamer - Periféricos" - para cada produtos - done
+            //Crie uma List<String> no formato: "Produto: Mouse Gamer | Preço: 150.0" - para cada produto - done
+            //Crie uma List<String> com os nomes dos produtos ativos. - done
+            //Retorne uma List<String> com os nomes dos produtos da categoria "Monitores". - done
+            //Retorne uma List<String> com os nomes dos produtos ativos e com estoque maior que zero, em maiúsculo. - done
+            //Retorne uma List<String> com as categorias dos produtos que têm preço menor que 200. - done
+            //Retorne uma List<String> no formato: "NOTEBOOK I5 - INFORMÁTICA" - para produtos ativos - done
+            //Ordene os produtos pelo nome em ordem alfabética. - done
+            //Ordene os produtos pelo preço em ordem crescente. - done
+            //Ordene os produtos pelo preço em ordem decrescente. - done
+            //Ordene os produtos pelo estoque em ordem crescente. - done
+            //Ordene os produtos pela categoria em ordem alfabética. - done
+            //Ordene os produtos pela categoria em ordem alfabética reversa. - done
+            //Ordene os produtos primeiro pela categoria e, se a categoria for igual, pelo nome. - done
+            //Ordene os produtos primeiro pela categoria em ordem reversa e, se a categoria for igual, pelo nome em ordem normal. - done
 
 
 
@@ -110,13 +121,27 @@ public class Main {
                case 14 -> OrdenarProdutosPorLengthNomeCrescente();
                case 15 -> OrdenarProdutosPorIdCrescente();
                case 16 -> OrdenarProdutosPorEstoqueDecrescente();
-               case 17 -> ListarProdutosAtivosComEstoqueIgualZero();
-               case 18 -> ListarProdutosDePerifericosComPrecoMaiorQueDuzentos();
-               case 19 -> ListarProdutosInativosOuComEstoqueIgualZero();
-               case 20 -> ListarProdutosQueTenhaMonitorNoNome();
-               case 21 -> ListarProdutosQueNomeComecaComMeEstaAtivo();
-               case 22 -> ListarProdutosAtivosComPrecoEntre200And1000();
-               case 24 -> ListarProdutosQueNaoSaoAcessorios();
+               case 17 -> OrdenarProdutosPorEstoqueCrescente();
+               case 18 -> OrdenarProdutosPorCategoriaOrdemAlfabetica();
+               case 19 -> OrdenarProdutosPorCategoriaOrdemAlfabeticaReversa();
+               case 20 -> OrdenarProdutosPorCategoriaOrdemAlfabeticaSeCategoriaForIgualOrdenarPorNome();
+               case 21 -> OrdenarProdutosPorCategoriaOrdemAlfabeticaReversaSeCategoriaForIgualOrdenarPeloNomeOrdemNormal();
+               case 22 -> ListarProdutosAtivosComEstoqueIgualZero();
+               case 23 -> ListarProdutosDePerifericosComPrecoMaiorQueDuzentos();
+               case 24 -> ListarProdutosInativosOuComEstoqueIgualZero();
+               case 25 -> ListarProdutosQueTenhaMonitorNoNome();
+               case 26 -> ListarProdutosQueNomeComecaComMeEstaAtivo();
+               case 27 -> ListarProdutosAtivosComPrecoEntre200And1000();
+               case 28 -> ListarProdutosComEstoqueMenorQue5Ativos();
+               case 29 -> ListarProdutosQueNaoSaoAcessorios();
+               case 30 -> ListarTamanhoDosNomesDosProdutos();
+               case 31 -> ListarNomeAndCategoriaProduto();
+               case 32 -> ListarNomeAndPrecoProduto();
+               case 33 -> ListarNomeDosProdutosAtivos();
+               case 34 -> ListarNomeProdutosCategoriaMonitores();
+               case 35 -> ListarNomeProdutosAtivosAndEstoqueMaiorQueZeroEmMaiusculo();
+               case 36 -> ListarCategoriasDeProdutosQueTemPrecoMenorQueDuzentos();
+               case 37 -> ListarNomeAndCategoriaProdutosAtivosMaiusculo();
                case 0 -> System.out.println("Saindo...");
                default -> System.out.println("Opcao invalida");
            }
@@ -285,6 +310,58 @@ public class Main {
         TabelaFormatada.tabelaFormatadaForList(produtosOrdenadosPorEstoqueDecrescente);
     }
 
+    public static void OrdenarProdutosPorEstoqueCrescente() {
+        List<Produto> produtosOrdenadosPorEstoqueCrescente = produtos.stream()
+                .sorted(Comparator.comparing(Produto::getEstoque))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ordenados por estoque ordem crescente >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosOrdenadosPorEstoqueCrescente);
+    }
+
+    public static void OrdenarProdutosPorCategoriaOrdemAlfabetica() {
+        List<Produto> produtosOrdenadosPorCategoriaOrdemAlfabetica = produtos.stream()
+                .sorted(Comparator.comparing(Produto::getCategoria))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ordenados por categoria em ordem alfabetica >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosOrdenadosPorCategoriaOrdemAlfabetica);
+    }
+
+    public static void OrdenarProdutosPorCategoriaOrdemAlfabeticaReversa() {
+        List<Produto> produtosOrdenadosPorCategoriaOrdemAlfabeticaReversa = produtos.stream()
+                .sorted(Comparator.comparing(Produto::getCategoria).reversed())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ordenados por categoria em ordem alfabetica reversa>>");
+        TabelaFormatada.tabelaFormatadaForList(produtosOrdenadosPorCategoriaOrdemAlfabeticaReversa);
+    }
+
+    public static void OrdenarProdutosPorCategoriaOrdemAlfabeticaSeCategoriaForIgualOrdenarPorNome() {
+        List<Produto> produtosOrdenadosPorCategoriaElsePorNome = produtos.stream()
+                .sorted(Comparator.comparing(Produto::getCategoria)
+                        .thenComparing(Produto::getNome))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ordenados por categoria e se categoria for igual então ordenado pelo nome >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosOrdenadosPorCategoriaElsePorNome);
+    }
+
+    public static void OrdenarProdutosPorCategoriaOrdemAlfabeticaReversaSeCategoriaForIgualOrdenarPeloNomeOrdemNormal() {
+        List<Produto> produtosOrdenadosPorCategoriaOrdemReversaElsePorNomeOrdemNormal = produtos.stream()
+                .sorted(Comparator.comparing(Produto::getCategoria, Comparator.reverseOrder())
+                        .thenComparing(Produto::getNome))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ordenados por categoria em ordem alfabetica reversa e se categoria for igual então ordenado por nome em ordem alfabetica normal >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosOrdenadosPorCategoriaOrdemReversaElsePorNomeOrdemNormal);
+    }
+
     public static void ListarProdutosAtivosComEstoqueIgualZero() {
         List<Produto> produtosAtivosComEstoqueMaiorQueZero = produtos.stream()
                 .filter(produto -> produto.getAtivo() == true && produto.getEstoque() == 0)
@@ -355,5 +432,109 @@ public class Main {
         TabelaFormatada.tabelaFormatadaForList(produtosAtivosComPrecoEntre200And1000);
     }
 
+    public static void ListarProdutosComEstoqueMenorQue5Ativos() {
+        List<Produto> produtosComEstoqueMenorQue5Ativos = produtos.stream()
+                .filter(produto -> produto.getEstoque() < 5 && produto.getAtivo())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos com estoque menor que 5 e que estão ativo >>");
+        TabelaFormatada.tabelaFormatadaForList(produtosComEstoqueMenorQue5Ativos);
+    }
+
+    public static void ListarTamanhoDosNomesDosProdutos() {
+        List<Integer> tamanhoNomeDosProdutos = produtos.stream()
+                .map(produto -> produto.getNome().length())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Tamanho dos nomes dos produtos >>");
+        tamanhoNomeDosProdutos.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void ListarNomeAndCategoriaProduto() {
+        //Mouse Gamer - Periféricos
+        List<String> nomeAndCategoriaProduto = produtos.stream()
+                .map(produto -> produto.getNome() + " - " + produto.getCategoria())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome e categoria de cada produto >>");
+        nomeAndCategoriaProduto.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void ListarNomeAndPrecoProduto() {
+        List<String> nomeAndPrecoProduto = produtos.stream()
+                .map(produto -> produto.getNome() + " | " + produto.getPreco())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome e preco de cada produto >>");
+        nomeAndPrecoProduto.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void ListarNomeDosProdutosAtivos() {
+        List<String> nomeProdutosAtivos = produtos.stream()
+                .filter(produto -> produto.getAtivo())
+                .map(Produto::getNome)
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome dos produtos ativos >>");
+        nomeProdutosAtivos.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void ListarNomeProdutosCategoriaMonitores() {
+        List<String> nomeProdutosCategoriaMonitores = produtos.stream()
+                .filter(produto -> produto.getCategoria().equals("Monitores"))
+                .map(Produto::getNome)
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome produtos da categoria Monitores >>");
+        nomeProdutosCategoriaMonitores.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void ListarNomeProdutosAtivosAndEstoqueMaiorQueZeroEmMaiusculo() {
+        List<String> nomeProdutosAtivosAndEstoqueMaiorQueZeroMaiusculo = produtos.stream()
+                .filter(produto -> produto.getAtivo() && produto.getEstoque() > 0)
+                .map(produto -> produto.getNome().toUpperCase())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome produtos ativos e com estoque maior que zero maiusculo >>");
+        nomeProdutosAtivosAndEstoqueMaiorQueZeroMaiusculo.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void ListarCategoriasDeProdutosQueTemPrecoMenorQueDuzentos() {
+        List<String> categoriasDeProdutosComPrecoMenorQueDuzentos = produtos.stream()
+                .filter(produto -> produto.getPreco() < 200)
+                .map(Produto::getCategoria)
+                .distinct()
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome das categorias de produtos que tem preco menor que duzentos >>");
+        categoriasDeProdutosComPrecoMenorQueDuzentos.stream()
+                .forEach(System.out::println);
+    }
+
+    public static void ListarNomeAndCategoriaProdutosAtivosMaiusculo() {
+        List<String> nomeAndCategoriaProdutoMaiusculo = produtos.stream()
+                .filter(produto -> produto.getAtivo())
+                .map(produto -> produto.getNome().toUpperCase() + " - " + produto.getCategoria().toUpperCase())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome e categoria do produto em maiusculo >>");
+        nomeAndCategoriaProdutoMaiusculo.stream()
+                .forEach(System.out::println);
+    }
 
 }
