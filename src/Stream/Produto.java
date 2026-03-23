@@ -8,16 +8,18 @@ public class Produto {
     private double preco;
     private int estoque;
     private boolean ativo;
+    private String marca;
 
     public Produto(){}
 
-    public Produto(int id, String nome, String categoria, double preco, int estoque, boolean ativo) {
+    public Produto(int id, String nome, String categoria, double preco, int estoque, boolean ativo, String marca) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
         this.preco = preco;
         this.estoque = estoque;
         this.ativo = ativo;
+        this.marca = marca;
     }
 
     public boolean getAtivo() {
@@ -64,10 +66,20 @@ public class Produto {
         return id;
     }
 
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+
     @Override
     public String toString() {
         return "Produto{" +
-                "nome='" + nome + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", preco=" + preco +
                 ", estoque=" + estoque +
