@@ -35,6 +35,7 @@ public class Main {
             System.out.println(" [1] - Mostrar produtos cadastrados");
             System.out.println(" [2] - Mostrar produtos ativos e com estoque maior que zero ordenados por categoria e depois por nome");
             System.out.println(" [3] - Mostrar nome - categoria - preco de produtos ativos ordenando do maior preco para o menor");
+            System.out.println(" [4] - Mostrar apenas os nomes dos produtos inativos ou sem estoque, em ordem alfabética");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
@@ -42,33 +43,21 @@ public class Main {
             //Exercicios
             //Bloco A
                 //Retorne uma lista com os produtos ativos e com estoque maior que zero, ordenados por categoria e depois por nome. - done
-                //Retorne uma lista de strings no formato: "nome - categoria - preço", apenas para produtos ativos, ordenando do maior preço para o menor.
-                //Retorne apenas os nomes dos produtos inativos ou sem estoque, em ordem alfabética.
+                //Retorne uma lista de strings no formato: "nome - categoria - preço", apenas para produtos ativos, ordenando do maior preço para o menor. - done
+                //Retorne apenas os nomes dos produtos inativos ou sem estoque, em ordem alfabética. - done
                 //Retorne os nomes dos produtos da categoria "Periféricos" em maiúsculo, sem repetir nomes, ordenados alfabeticamente.
-                //Retorne os produtos da marca "Logitech" que estejam ativos, ordenados pelo preço crescente.
-                //Retorne os nomes dos produtos com preço entre 100 e 500, ordenados primeiro pela categoria e depois pelo nome.
                 //Retorne uma lista no formato: "MARCA :: NOME", somente dos produtos ativos com estoque maior que zero, ordenados por marca e depois por nome.
             //Bloco B
                 //Busque o primeiro produto ativo da categoria "Informática" ordenado por menor preço.
-                //Busque qualquer produto com estoque zero.
                 //Busque o nome do primeiro produto da marca "Redragon" em ordem alfabética.
-                //Busque o produto ativo mais barato da categoria "Periféricos"
                 //Busque o primeiro produto cujo nome contém "Notebook" e devolva um Optional<String> com o nome dele em maiúsculo.
             //Bloco C
-                //Calcule quantos produtos ativos existem.
-                //Calcule o estoque total da loja.
-                //Calcule o valor total em estoque da loja.
                 //Calcule o valor total em estoque apenas dos produtos ativos.
-                //Calcule a média de preço dos produtos ativos.
-                //Calcule o maior preço entre os produtos da categoria "Informática".
                 //Calcule o menor preço entre os produtos ativos com estoque maior que zero.
                 //Calcule a soma dos preços de todos os produtos da marca "Logitech".
-                //Calcule a quantidade de unidades em estoque apenas dos produtos da categoria "Acessórios".
             //Bloco D
                 //Use reduce para somar todos os preços dos produtos ativos.
-                //Use reduce para somar o estoque total.
                 //Use reduce para concatenar todos os nomes dos produtos em uma única string, separados por " | ".
-                //Use reduce para gerar um texto com os nomes apenas dos produtos ativos.
                 //Use reduce para calcular o valor total em estoque da loja, em vez de usar mapToDouble(...).sum().
             //Bloco E
                 //Agrupar produtos por categoria
@@ -85,12 +74,12 @@ public class Main {
                 //Calcular a média de preço por categoria
                 //Calcular a média de preço apenas dos produtos ativos por marca
 
-
            switch (opcao) {
                case 0 -> System.out.println("Saindo...");
                case 1 -> TabelaFormatada.tabelaFormatadaForList(produtos);
                case 2 -> mostrarProdutosAtivosAndEstoqueMaiorQueZeroOrdenadosPorCategoriaDepoisPorNome();
                case 3 -> mostrarNomeCategoriaPrecoProdutosAtivosOrdenadosPorPrecoReverso();
+               case 4 -> mostrarNomeDosProdutosInativosOuSemEstoqueOrdemAlfabetica();
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
@@ -110,7 +99,6 @@ public class Main {
     }
 
     public static void mostrarNomeCategoriaPrecoProdutosAtivosOrdenadosPorPrecoReverso() {
-        //nome - categoria - preço
         List<String> camposProdutos = produtos.stream()
                 .filter(Produto::getAtivo)
                 .sorted(Comparator.comparing(Produto::getPreco).reversed())
@@ -122,6 +110,20 @@ public class Main {
         System.out.println("<< Mostrando nome categoria e preco de produtos ativos ordenados por preco >>");
         camposProdutos.stream()
                 .forEach(System.out::println);
+    }
+
+    public static void mostrarNomeDosProdutosInativosOuSemEstoqueOrdemAlfabetica() {
+        List<String> nomeProdutosInativosOuSemEstoqueOrdemAlfabetica = produtos.stream()
+                .filter(produto -> !produto.getAtivo() || produto.getEstoque() == 0)
+                .map(Produto::getNome)
+                .sorted()
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Mostrando nome dos produtos inativos ou sem estoque em ordem alfabetic >>");
+        nomeProdutosInativosOuSemEstoqueOrdemAlfabetica.stream()
+                .forEach(System.out::println);
+
     }
 
 }
