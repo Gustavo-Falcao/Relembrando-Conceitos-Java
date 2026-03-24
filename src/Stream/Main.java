@@ -32,13 +32,16 @@ public class Main {
         int opcao;
         do {
             System.out.println("\n\n<< Menu >>");
+            System.out.println(" [1] - Mostrar produtos cadastrados");
+            System.out.println(" [2] - Mostrar produtos ativos e com estoque maior que zero ordenados por categoria e depois por nome");
+            System.out.println(" [3] - Mostrar nome - categoria - preco de produtos ativos ordenando do maior preco para o menor");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
 
             //Exercicios
             //Bloco A
-                //Retorne uma lista com os produtos ativos e com estoque maior que zero, ordenados por categoria e depois por nome.
+                //Retorne uma lista com os produtos ativos e com estoque maior que zero, ordenados por categoria e depois por nome. - done
                 //Retorne uma lista de strings no formato: "nome - categoria - preço", apenas para produtos ativos, ordenando do maior preço para o menor.
                 //Retorne apenas os nomes dos produtos inativos ou sem estoque, em ordem alfabética.
                 //Retorne os nomes dos produtos da categoria "Periféricos" em maiúsculo, sem repetir nomes, ordenados alfabeticamente.
@@ -85,10 +88,40 @@ public class Main {
 
            switch (opcao) {
                case 0 -> System.out.println("Saindo...");
+               case 1 -> TabelaFormatada.tabelaFormatadaForList(produtos);
+               case 2 -> mostrarProdutosAtivosAndEstoqueMaiorQueZeroOrdenadosPorCategoriaDepoisPorNome();
+               case 3 -> mostrarNomeCategoriaPrecoProdutosAtivosOrdenadosPorPrecoReverso();
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
 
+    }
+
+    public static void mostrarProdutosAtivosAndEstoqueMaiorQueZeroOrdenadosPorCategoriaDepoisPorNome() {
+        List<Produto> produtos1 = produtos.stream()
+                .filter(produto -> produto.getAtivo() && produto.getEstoque() > 0)
+                .sorted(Comparator.comparing(Produto::getCategoria)
+                        .thenComparing(Produto::getNome))
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Produtos ativos e com estoque maior que zero ordenado por categoria e depois por nome >>");
+        TabelaFormatada.tabelaFormatadaForList(produtos1);
+    }
+
+    public static void mostrarNomeCategoriaPrecoProdutosAtivosOrdenadosPorPrecoReverso() {
+        //nome - categoria - preço
+        List<String> camposProdutos = produtos.stream()
+                .filter(Produto::getAtivo)
+                .sorted(Comparator.comparing(Produto::getPreco).reversed())
+                .map(produto -> produto.getNome() + " - " + produto.getCategoria() + " - " + produto.getPreco())
+                .toList();
+
+
+        System.out.println();
+        System.out.println("<< Mostrando nome categoria e preco de produtos ativos ordenados por preco >>");
+        camposProdutos.stream()
+                .forEach(System.out::println);
     }
 
 }
