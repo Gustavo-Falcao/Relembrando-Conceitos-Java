@@ -36,6 +36,8 @@ public class Main {
             System.out.println(" [2] - Mostrar produtos ativos e com estoque maior que zero ordenados por categoria e depois por nome");
             System.out.println(" [3] - Mostrar nome - categoria - preco de produtos ativos ordenando do maior preco para o menor");
             System.out.println(" [4] - Mostrar apenas os nomes dos produtos inativos ou sem estoque, em ordem alfabética");
+            System.out.println(" [5] - Mostrar nome dos produtos da categoria Periféricos em maiúsculo, sem repetir nomes, ordenados alfabeticamente");
+            System.out.println(" [6] - Mostrar MARCA :: NOME, somente para produtos ativoss com estoque maior que zero, ordenados por marca e depois por nome");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
@@ -45,7 +47,7 @@ public class Main {
                 //Retorne uma lista com os produtos ativos e com estoque maior que zero, ordenados por categoria e depois por nome. - done
                 //Retorne uma lista de strings no formato: "nome - categoria - preço", apenas para produtos ativos, ordenando do maior preço para o menor. - done
                 //Retorne apenas os nomes dos produtos inativos ou sem estoque, em ordem alfabética. - done
-                //Retorne os nomes dos produtos da categoria "Periféricos" em maiúsculo, sem repetir nomes, ordenados alfabeticamente.
+                //Retorne os nomes dos produtos da categoria "Periféricos" em maiúsculo, sem repetir nomes, ordenados alfabeticamente. - done
                 //Retorne uma lista no formato: "MARCA :: NOME", somente dos produtos ativos com estoque maior que zero, ordenados por marca e depois por nome.
             //Bloco B
                 //Busque o primeiro produto ativo da categoria "Informática" ordenado por menor preço.
@@ -80,6 +82,8 @@ public class Main {
                case 2 -> mostrarProdutosAtivosAndEstoqueMaiorQueZeroOrdenadosPorCategoriaDepoisPorNome();
                case 3 -> mostrarNomeCategoriaPrecoProdutosAtivosOrdenadosPorPrecoReverso();
                case 4 -> mostrarNomeDosProdutosInativosOuSemEstoqueOrdemAlfabetica();
+               case 5 -> mostrarNomeProdutosCategoriaPerifericosMaiusculoSemRepetirOrdemAlfabetica();
+               case 6 -> mostrarMarcaAndNomeProdutosAtivosAndEstoqueMaiorQueZeroOrdenadosPorMarcaDepoisPorNome();
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
@@ -123,7 +127,35 @@ public class Main {
         System.out.println("<< Mostrando nome dos produtos inativos ou sem estoque em ordem alfabetic >>");
         nomeProdutosInativosOuSemEstoqueOrdemAlfabetica.stream()
                 .forEach(System.out::println);
+    }
 
+    public static void mostrarNomeProdutosCategoriaPerifericosMaiusculoSemRepetirOrdemAlfabetica() {
+        List<String> nomeProdutos = produtos.stream()
+                .filter(produto -> produto.getCategoria().equals("Periféricos"))
+                .map(produto -> produto.getNome().toUpperCase())
+                .distinct()
+                .sorted()
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Nome dos produtos da categoria Periféricos em maiúsculo, sem repetir nomes, ordenados alfabeticamente >>");
+        nomeProdutos.stream()
+                .forEach(System.out::println);
+    }
+
+    //Retorne uma lista no formato: "MARCA :: NOME", somente dos produtos ativos com estoque maior que zero, ordenados por marca e depois por nome.
+    public static void mostrarMarcaAndNomeProdutosAtivosAndEstoqueMaiorQueZeroOrdenadosPorMarcaDepoisPorNome() {
+        List<String> marcaAndNomeProdutos = produtos.stream()
+                .filter(produto -> produto.getAtivo() && produto.getEstoque() > 0)
+                .sorted(Comparator.comparing(Produto::getMarca)
+                        .thenComparing(Produto::getNome))
+                .map(produto -> produto.getMarca().toUpperCase() + " :: " + produto.getNome().toUpperCase())
+                .toList();
+
+        System.out.println();
+        System.out.println("<< Mostrando MARCA :: NOME, somente para produtos atvios com estoque maior que zero, ordenados por marca e depor por nome");
+        marcaAndNomeProdutos.stream()
+                .forEach(System.out::println);
     }
 
 }
