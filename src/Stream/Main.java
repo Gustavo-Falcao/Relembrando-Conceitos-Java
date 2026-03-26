@@ -1,6 +1,7 @@
 package Stream;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import Agenda_Contatos.TabelaFormatada;
 
@@ -38,6 +39,12 @@ public class Main {
             System.out.println(" [4] - Mostrar apenas os nomes dos produtos inativos ou sem estoque, em ordem alfabética");
             System.out.println(" [5] - Mostrar nome dos produtos da categoria Periféricos em maiúsculo, sem repetir nomes, ordenados alfabeticamente");
             System.out.println(" [6] - Mostrar MARCA :: NOME, somente para produtos ativoss com estoque maior que zero, ordenados por marca e depois por nome");
+            System.out.println(" [7] - Montar um Map com id e nome do produto");
+            System.out.println(" [8] - Agrupar Nome dos produtos por categoria");
+            System.out.println(" [9] - Agrupar produtos por categoria");
+            System.out.println(" [10] - Agrupar produtos por marca");
+            System.out.println(" [11] - Agrupar apenas produtos ativos por categoria");
+            System.out.println(" [12] - Agrupar apenas produtos com estoque maior que zero por marca");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
@@ -84,6 +91,10 @@ public class Main {
                case 4 -> mostrarNomeDosProdutosInativosOuSemEstoqueOrdemAlfabetica();
                case 5 -> mostrarNomeProdutosCategoriaPerifericosMaiusculoSemRepetirOrdemAlfabetica();
                case 6 -> mostrarMarcaAndNomeProdutosAtivosAndEstoqueMaiorQueZeroOrdenadosPorMarcaDepoisPorNome();
+               case 7 -> montarMapNomeIdProduto();
+               case 8 -> agruparNomeProdutosPorCategoria();
+               case 9 -> agruparProdutosPorCategoria();
+               case 10 -> agruparProdutosPorMarca();
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
@@ -157,5 +168,62 @@ public class Main {
         marcaAndNomeProdutos.stream()
                 .forEach(System.out::println);
     }
+
+    public static void montarMapNomeIdProduto() {
+        Map<Integer,String> nomeProduto = produtos.stream()
+                .collect(Collectors.toMap(
+                        Produto::getId,
+                        Produto::getNome
+                ));
+
+        System.out.println();
+        System.out.println("<< Mostrando id e nome do produto em um map >>");
+        nomeProduto.entrySet().stream()
+                .forEach(entry -> System.out.println("Id: " + entry.getKey() + " | Value: " + entry.getValue()));
+    }
+
+    public static void agruparNomeProdutosPorCategoria() {
+        Map<String,List<String>> nomeProdutosPorCategoria = produtos.stream()
+                .collect(Collectors.groupingBy(
+                        Produto::getCategoria,
+                        Collectors.mapping(Produto::getNome, Collectors.toList())
+                        ));
+
+        System.out.println();
+        System.out.println("<< Nomes dos produtos agrupados por categoria >>");
+        nomeProdutosPorCategoria.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()
+                        .stream()
+                        .reduce("", (a,b) -> a + " | " + b)));
+    }
+
+    public static void agruparProdutosPorCategoria() {
+        Map<String,List<Produto>> produtosPorCategoria = produtos.stream()
+                .collect(Collectors.groupingBy(Produto::getCategoria));
+
+        System.out.println();
+        System.out.println("<< Produtos agrupados por categoria >>");
+        produtosPorCategoria.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()
+                        .stream()
+                        .map(Produto::toString)
+                        .reduce("", (a, b) -> a + " | " + b)));
+
+    }
+
+    public static void agruparProdutosPorMarca() {
+        Map<String,List<Produto>> produtosPorMarca = produtos.stream()
+                .collect(Collectors.groupingBy(Produto::getMarca));
+
+        System.out.println();
+        System.out.println("<< Produtos agrupados por marca >>");
+        produtosPorMarca.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()
+                        .stream()
+                        .map(Produto::toString)
+                        .reduce("", (a, b) -> a + " | " + b)));
+
+    }
+
 
 }

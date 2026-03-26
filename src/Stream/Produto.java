@@ -74,17 +74,16 @@ public class Produto {
         this.marca = marca;
     }
 
-
     @Override
     public String toString() {
-        return "Produto{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", preco=" + preco +
-                ", estoque=" + estoque +
-                ", ativo=" + ativo +
-                '}';
+        return "{Id: " + id +
+                "; Nome: " + nome +
+                "; Categoria: " + categoria +
+                "; Preco: " + preco +
+                "; Estoque: " + estoque +
+                "; Ativo: " + ativo +
+                "; Marca: " + marca +
+                "}";
     }
 }
 
