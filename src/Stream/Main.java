@@ -1,6 +1,7 @@
 package Stream;
 
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import Agenda_Contatos.TabelaFormatada;
@@ -95,6 +96,8 @@ public class Main {
                case 8 -> agruparNomeProdutosPorCategoria();
                case 9 -> agruparProdutosPorCategoria();
                case 10 -> agruparProdutosPorMarca();
+               case 11 -> agruparApenasProdutosAtivosPorCategoria();
+               case 12 -> agruparApenasProdutosEstoqueMaiorQueZeroAndPorMarca();
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
@@ -225,5 +228,33 @@ public class Main {
 
     }
 
+    public static void agruparApenasProdutosAtivosPorCategoria() {
+        Map<String,List<Produto>> produtosAtivosPorCategoria = produtos.stream()
+                .filter(Produto::getAtivo)
+                .collect(Collectors.groupingBy(Produto::getCategoria));
+
+        System.out.println();
+        System.out.println("<< Produtos ativos agrupados por categoria >>");
+        produtosAtivosPorCategoria.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()
+                        .stream()
+                        .map(Produto::toString)
+                        .reduce("", (a,b) -> a + " | " + b)));
+    }
+
+    //Agrupar apenas produtos com estoque maior que zero por marca
+    public static void agruparApenasProdutosEstoqueMaiorQueZeroAndPorMarca() {
+        Map<String,List<Produto>> produtosEstoqueMaiorQueZeroPorMarca = produtos.stream()
+                .filter(produto -> produto.getEstoque() > 0)
+                .collect(Collectors.groupingBy(Produto::getMarca));
+
+        System.out.println();
+        System.out.println("<< Produtos com estoque maior que zero e agrupados por marca >>");
+        produtosEstoqueMaiorQueZeroPorMarca.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()
+                        .stream()
+                        .map(Produto::toString)
+                        .reduce("", (a,b) -> a + " => " + b)));
+    }
 
 }
