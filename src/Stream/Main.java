@@ -46,6 +46,10 @@ public class Main {
             System.out.println(" [10] - Agrupar produtos por marca");
             System.out.println(" [11] - Agrupar apenas produtos ativos por categoria");
             System.out.println(" [12] - Agrupar apenas produtos com estoque maior que zero por marca");
+            System.out.println(" [13] - Calcular quantidade de produtos por categoria");
+            System.out.println(" [14] - Quantidade de produtos ativos por categoria");
+            System.out.println(" [15] - Calcular a quantidade de estoque por categoria");
+            System.out.println(" [16] - Calcular o valor total em estoque por categoria");
             System.out.println(" [0] - Sair");
             System.out.print("Escolha uma opcao: ");
             opcao = Integer.parseInt(scanner.nextLine());
@@ -98,6 +102,10 @@ public class Main {
                case 10 -> agruparProdutosPorMarca();
                case 11 -> agruparApenasProdutosAtivosPorCategoria();
                case 12 -> agruparApenasProdutosEstoqueMaiorQueZeroAndPorMarca();
+               case 13 -> calcularQuantidadeProdutosPorCategoria();
+               case 14 -> calcularQuantidadeProdutosAtivosPorCategoria();
+               case 15 -> calcularQuantidadeEstoquePorCategoria();
+               case 16 -> calcularValorTotalEmEstoquePorCategoria();
                default -> System.out.println("Opcao invalida");
            }
         } while (opcao != 0);
@@ -256,5 +264,51 @@ public class Main {
                         .map(Produto::toString)
                         .reduce("", (a,b) -> a + " => " + b)));
     }
+    //Calcular quantidade de produtos por categoria
+    public static void calcularQuantidadeProdutosPorCategoria() {
+        Map<String,Long> quantidadeProdutosPorCategoria = produtos.stream()
+                .collect(Collectors.groupingBy(Produto::getCategoria, Collectors.counting()));
 
+        System.out.println();
+        System.out.println("<< Quantidade de produtos por categoria >>");
+        quantidadeProdutosPorCategoria.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()));
+    }
+
+    //Quantidade de produtos ativos por categoria
+    public static void calcularQuantidadeProdutosAtivosPorCategoria() {
+        Map<String,Long> produtosAtivosPorCategoria = produtos.stream()
+                .filter(Produto::getAtivo)
+                .collect(Collectors.groupingBy(Produto::getCategoria, Collectors.counting()));
+
+        System.out.println();
+        System.out.println("<< Quantidade de produtos ativos por categoria >>");
+        produtosAtivosPorCategoria.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()));
+    }
+
+    //Calcular a quantidade de estoque por categoria
+    public static void calcularQuantidadeEstoquePorCategoria() {
+        Map<String,Double> quantidadeEstoquePorCategoria = produtos.stream()
+                .collect(Collectors.groupingBy(Produto::getCategoria, Collectors.summingDouble(Produto::getPreco)));
+
+        System.out.println();
+        System.out.println("<< Quantidade de estoque por categoria >>");
+        quantidadeEstoquePorCategoria.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()));
+
+    }
+
+    //Calcular o valor total em estoque por categoria -> REFAZER
+    public static void calcularValorTotalEmEstoquePorCategoria() {
+        Map<String,Double> valorTotalEmEstoquePorCategoria = produtos.stream()
+                .collect(Collectors.groupingBy(Produto::getCategoria, Collectors
+                        .summingDouble(produto -> produto.getPreco() * produto.getEstoque())));
+
+        System.out.println();
+        System.out.println("<< Valor total em estoque por categoria >>");
+        valorTotalEmEstoquePorCategoria.entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + " => " + entry.getValue()));
+
+    }
 }
